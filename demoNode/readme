@@ -1,0 +1,17 @@
+Steps to start Application : 
+
+step 1 : install Nodejs
+step 2 : update env.undefined file if your mysql database password is different then in my local username is localhost and password is empty
+step 3 : npm install
+step 4 : nodemon server.js
+
+then your application will start on port 5000
+
+And all API urls are set in POSTMAN hit below url in chrome brower then you will find postman collection named practice
+
+https://www.getpostman.com/collections/016ea7ee0ba94c07e281
+
+
+
+
+
