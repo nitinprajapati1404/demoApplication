@@ -142,3 +142,24 @@
   src: local('Neuton Italic'), local('Neuton-Italic'), url(https://fonts.gstatic.com/s/neuton/v9/MZZLPHJyYM2BWjeqYVWFb_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
+
+.banner-slider .item{ min-height: 750px;  }
+.banner-content {
+    margin-top: 30%;
+     color: #ffffff;
+}
+.owl-buttons { display: none; }
+
+@media screen and (max-width:500px) {
+   .banner-slider .item{ min-height: 450px;  }
+   .banner-content {
+    margin-top: 50%;
+     color: #ffffff;
+      font-size: 20px;
+    line-height: 30px;
+}
+.banner-slider .item { padding-left: 20px; }
+
+
+
+}

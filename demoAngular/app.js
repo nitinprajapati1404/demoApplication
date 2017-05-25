@@ -18,10 +18,10 @@ app.config(['$routeProvider',
                     controller: "productCtrl"
                 })
                 .when('/product/:id', {
-                    templateUrl: "modules/products/allproducts.html",
+                    templateUrl: "modules/products/productinfo.html",
                     controller: "productDetailCtrl"
                 })
-                .when('/contactus', {
+                .when('/contact-us', {
                     templateUrl: "modules/contactus/contactus.html",
                     controller: "contactUsCtrl"
                 })
