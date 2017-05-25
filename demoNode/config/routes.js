@@ -17,10 +17,28 @@ app.delete('/removeIndiImage/:id', controllers.productRouter.removeIndividualPro
  * **************************** END ************************************************************************
  */
 /*  
- * **************************** Product Routing Start ************************************************************************
+ * **************************** CMS Routing Start ************************************************************************
  */
 
 app.post('/cms', controllers.cmsRouter.addCms);
+app.get('/cms', controllers.cmsRouter.getAllCmsPage);
+app.get('/cms/:id', controllers.cmsRouter.getCmsPage);
+app.put('/cms/:id', controllers.cmsRouter.updateCms);
+app.delete('/cms/:id', controllers.cmsRouter.removeCms);
+ 
+
+/*  
+ * **************************** END ************************************************************************
+ */
+/*  
+ * **************************** contactUs Routing Start ************************************************************************
+ */
+
+app.post('/contactUs', controllers.contactUsRouter.addContactUs);
+app.get('/contactUs', controllers.contactUsRouter.getAllContactUs);
+app.get('/contactUs/:id', controllers.contactUsRouter.getIndividualContactUs);
+app.put('/contactUs/:id', controllers.contactUsRouter.updateContactUs);
+app.delete('/contactUs/:id', controllers.contactUsRouter.removeContactUs);
  
 
 /*  

@@ -6,6 +6,7 @@ module.exports = function (sequelize, DataTypes) {
         contactName: {type: DataTypes.STRING},
         InquiryProductName: {type: DataTypes.STRING},
         InfoDesc: {type: DataTypes.STRING},
+        contactedUser: {type: DataTypes.BOOLEAN, defaultValue: false},
         isActive: {type: DataTypes.BOOLEAN, defaultValue: true},
         isDelete: {type: DataTypes.BOOLEAN, defaultValue: false}
     }, {
