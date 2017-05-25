@@ -11,6 +11,7 @@ module.exports = function (sequelize, DataTypes) {
         productHomePageImageRandom: {type: DataTypes.STRING},
         productCatelog: {type: DataTypes.STRING},
         productCatelogRandom: {type: DataTypes.STRING},
+        showOnHomePage: {type: DataTypes.BOOLEAN, defaultValue: false},
         isActive: {type: DataTypes.BOOLEAN, defaultValue: true},
         isDelete: {type: DataTypes.BOOLEAN, defaultValue: false}
     }, {

@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module("demoApp",["ngRoute"]);
+var app = angular.module("demoApp", ["ngRoute"]);
 
 app.config(['$routeProvider',
     function ($routeProvider) {
@@ -29,8 +29,21 @@ app.config(['$routeProvider',
                     redirectTo: "/"
                 });
     }]);
-app.controller('commonCtrl', ['$scope',function ($scope) {
-       console.log("test")
+app.controller('commonCtrl', ['$scope', 'constant', 'httpMethodService', function ($scope, constant, httpMethodService) {
+        var getProduct = constant.serverUrl + constant.product;
+        var getCmsPages = constant.serverUrl + constant.cms;
+        $scope.allProducts = [];
+        $scope.allCmsPages = [];
+        httpMethodService.httpMethodCallforRowData("GET", getProduct, {}).success(function (response) {
+            if (response.success) {
+                $scope.allProducts = response.products;
+            }
+        });
+//        httpMethodService.httpMethodCallforRowData("GET", getCmsPages, {}).success(function (response) {
+//            if (response.success) {
+//                $scope.allCmsPages = response.pages;
+//            }
+//        });
     }]);
 app.directive('tooltip', function () {
     return {

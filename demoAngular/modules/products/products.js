@@ -1,5 +1,5 @@
 app.controller('productCtrl', ['$scope', function ($scope) {
-
+//        console.log($scope.allProducts)
     }]);
 app.controller('productDetailCtrl', ['$scope', function ($scope) {
         $(".owl-demo").owlCarousel({
