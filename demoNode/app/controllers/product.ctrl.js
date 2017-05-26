@@ -2,6 +2,20 @@ var bcrypt = require("bcrypt-nodejs");
 var _ = require('lodash');
 var multiparty = require('multiparty');
 var helper = require("../helpers/_helpers");
+var allAttributesOfProduct = [
+    'productId',
+    'productName',
+    'productShortDesc',
+    'productDesc',
+    'productThumbImage',
+    [models.sequelize.fn('CONCAT', process.env.CONTENT_URL_PRODUCT, models.sequelize.col('productThumbImageRandom')), 'productThumbImageRandom'],
+    'productHomePageImage',
+    [models.sequelize.fn('CONCAT', process.env.CONTENT_URL_PRODUCT, models.sequelize.col('productHomePageImageRandom')), 'productHomePageImageRandom'],
+    'productCatelog',
+    [models.sequelize.fn('CONCAT', process.env.CONTENT_URL_CATLOG, models.sequelize.col('productCatelogRandom')), 'productCatelogRandom'],
+    "showOnHomePage"
+];
+
 module.exports = {
     // add product 
     addProduct: function (req, res) {
@@ -44,13 +58,12 @@ module.exports = {
                     message: err.message
                 });
             });
-
         })
 
     },
-    // get all products list
+// get all products list
     getAllProducts: function (req, res) {
-        models.product.findAll().then(function (products) {
+        models.product.findAll({attributes: allAttributesOfProduct}).then(function (products) {
             return res.json({
                 success: true,
                 message: "All Product List",
@@ -66,7 +79,15 @@ module.exports = {
     },
     //get individual product Information
     getIndividualProductInfo: function (req, res) {
-        models.product.findById(req.params.id, {include: [{model: models.productImages}]}).then(function (product) {
+        models.product.findById(req.params.id, {attributes: allAttributesOfProduct,
+            include: [{model: models.productImages, attributes: [
+                        "productImageId",
+                        "image",
+                        [models.sequelize.fn('CONCAT', process.env.CONTENT_URL_CATLOG, models.sequelize.col('imageRandom')), 'imageRandom'],
+                    ]}]
+
+
+        }).then(function (product) {
             if (product != null) {
                 return res.json({
                     success: true,
@@ -128,9 +149,8 @@ module.exports = {
                     message: err.message
                 });
             });
+        })
 
-        }) 
- 
     },
     //delete individual product
     deleteProduct: function (req, res) {
@@ -172,8 +192,6 @@ module.exports = {
                 _.each(files.image, function (profilePic) {
                     var pictureName = helper.uplaodFile(profilePic, 'content/product');
                     allImages.push(pictureName);
-
-
                 });
             }
             if (totalDocLength > 0) {
@@ -258,6 +276,5 @@ module.exports = {
                 message: err.message
             });
         });
-
     }
 };

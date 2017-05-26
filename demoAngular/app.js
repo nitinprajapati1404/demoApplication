@@ -29,7 +29,7 @@ app.config(['$routeProvider',
                     redirectTo: "/"
                 });
     }]);
-app.controller('commonCtrl', ['$scope', 'constant', 'httpMethodService', function ($scope, constant, httpMethodService) {
+app.controller('commonCtrl', ['$scope', 'constant', 'httpMethodService','$filter', function ($scope, constant, httpMethodService,$filter) {
         var getProduct = constant.serverUrl + constant.product;
         var getCmsPages = constant.serverUrl + constant.cms;
         $scope.allProducts = [];
@@ -39,11 +39,17 @@ app.controller('commonCtrl', ['$scope', 'constant', 'httpMethodService', functio
                 $scope.allProducts = response.products;
             }
         });
-//        httpMethodService.httpMethodCallforRowData("GET", getCmsPages, {}).success(function (response) {
-//            if (response.success) {
-//                $scope.allCmsPages = response.pages;
-//            }
-//        });
+        $scope.aboutUsCmsPage = {};
+        httpMethodService.httpMethodCallforRowData("GET", getCmsPages, {}).success(function (response) {
+            if (response.success) {
+                $scope.allCmsPages = response.pages;
+                if($scope.allCmsPages.length > 0){
+                    $scope.aboutUsCmsPage = $filter('filter')($scope.allCmsPages,{cmsName:'about_us'})[0];
+                    console.log($scope.allCmsPages,'$scope.allCmsPages')
+                }
+                
+            }
+        });
     }]);
 app.directive('tooltip', function () {
     return {
