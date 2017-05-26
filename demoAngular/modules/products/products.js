@@ -21,7 +21,7 @@ app.controller('productDetailCtrl', ['$scope', '$timeout', '$routeParams', 'http
                 singleItem: true
 
             });
-        }, 100)
+        }, 200)
 
         $scope.openForm = function () {
             var modalInstance = $modal.open({

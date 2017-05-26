@@ -8,6 +8,6 @@ app.controller('homeCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
                 singleItem: true
 
             });
-        }, 100)
+        }, 150)
 
     }]);
