@@ -83,7 +83,7 @@ module.exports = {
             include: [{model: models.productImages, attributes: [
                         "productImageId",
                         "image",
-                        [models.sequelize.fn('CONCAT', process.env.CONTENT_URL_CATLOG, models.sequelize.col('imageRandom')), 'imageRandom'],
+                        [models.sequelize.fn('CONCAT', process.env.CONTENT_URL_PRODUCT, models.sequelize.col('imageRandom')), 'imageRandom'],
                     ]}]
 
 

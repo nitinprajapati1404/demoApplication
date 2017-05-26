@@ -4,8 +4,8 @@ module.exports = function (sequelize, DataTypes) {
     var products = sequelize.define("product", {
         productId: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
         productName: {type: DataTypes.STRING},
-        productShortDesc: {type: DataTypes.STRING},
-        productDesc: {type: DataTypes.STRING},
+        productShortDesc: {type: DataTypes.TEXT},
+        productDesc: {type: DataTypes.TEXT},
         productThumbImage: {type: DataTypes.STRING},
         productThumbImageRandom: {type: DataTypes.STRING},
         productHomePageImage: {type: DataTypes.STRING},

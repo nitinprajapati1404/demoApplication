@@ -17,15 +17,6 @@
 
     </div>
 </section>
-<section class="planet-section">
-    <div class="overlay">
-        <div class="container">
-            <h2>Who we are?</h2>
-            <p ng-bind="aboutUsCmsPage.cmsShortDesc"></p>
-            <a href="#/about-us" class="btn btn-md btn-inverse m-t-40">Read More</a>
-        </div>
-    </div>
-</section>
 <section class="choose-roofing-section">
     <div class="container">
         <div class="section-title">
@@ -83,13 +74,23 @@
         </div>
     </div>
 </section>
+<section class="planet-section">
+    <div class="overlay">
+        <div class="container">
+            <h2>Who we are?</h2>
+            <p ng-bind="aboutUsCmsPage.cmsShortDesc"></p>
+            <a href="#/about-us" class="btn btn-md btn-inverse m-t-40">Read More</a>
+        </div>
+    </div>
+</section>
+
 <section>
     <div class="container">
         <div class="section-title">
             <h2>Featured Products</h2>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-4" ng-repeat="product in allProducts track by $index" ng-if="product.showOnHomePage && product.productThumbImageRandom">
+            <div class="col-xs-12 col-sm-3 col-md-3" ng-repeat="product in allProducts track by $index" ng-if="($index <= 3) && (product.showOnHomePage) && (product.productThumbImageRandom)">
                 <article class="post-entry">
                     <div class="article-img"><img ng-src="{{product.productThumbImageRandom}}" alt=""></div>
                     <h4 class="entry-title m-b-20"><a ng-href="#/product/{{product.productId}}">{{product.productName}}</a></h4>
@@ -99,7 +100,7 @@
                 </article>
             </div>
         </div>
-        <div class="text-center m-t-30 m-b-20"><a ng-href="#/products" class="btn btn-lg btn-normal">View All Projects</a></div>
+        <div class="text-center m-t-30 m-b-20"><a ng-href="#/products" class="btn btn-lg btn-normal">View All Products</a></div>
     </div>
 </section>
 <!--         <section class="quote-form">

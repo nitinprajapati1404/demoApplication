@@ -1,44 +1,48 @@
-<section class="full-height-section banner-slider">
-    <div  class="owl-demo owl-carousel owl-theme">
-
-        <div  class="item" style="background-image:url('{{product.productHomePageImageRandom}}'); background-repeat: no-repeat; background-size: cover;">
-
-            <div class="container">
-                <div class="row">
-
-                    <h1 class="banner-content" ng-bind="product.productName"></h1>
-                    <div class="get-quote"><a ng-href="#/product/{{product.productId}}" class="btn btn-md btn-inverse btn-border m-t-10">Read More</a></div>		
-                </div>	
-            </div>
-
+<section class="page-header">
+    <div class="overlay">
+        <div class="container">
+            <h1 class="page-title m-b-10">Product Detail</h1>
+<!--            <p>We will bring your ideas to life</p>-->
         </div>
-
     </div>
 </section>
-
 <section class="page-container about-us-page p-b-0">
     <div class="our-company">
         <div class="container">
             <div class="section-title">
-                <h2>Product Detail</h2>
+                <h2>Our Company</h2>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="company-intro m-b-30">
-                        <!--<h4>We Love What We Do</h4>-->
-                        <p>{{product.productDesc}}</p>
+                        <h4>We Love What We Do</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora ducimus non est harum inventore optio esse ven iam iusto impedit explicabo ratione id iure, pariatur nihil nulla quae quam recusandae.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, odio, cumque. Soluta porro voluptatibus illo rerum ducimus ad error assumenda dignissimos aspernatur commodi mollitia asperiores doloribus, placeat veniam nam.</p>
+                        <p>we would love to hear from you</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="company-image-slider">
                         <div class="owl-demo owl-carousel owl-theme">
-                            <div class="item" ng-repeat="pImage in product.productImages">
-                                <div class="company-image"><img ng-src="{{pImage.imageRandom}}" class="img-responsive" alt=""></div>
+                            <div class="item">
+                                <div class="company-image"><img src="images/portfolio/grid/portfolio-1.jpg" class="img-responsive" alt=""></div>
+                            </div>
+                            <div class="item">
+                                <div class="company-image"><img src="images/portfolio/grid/portfolio-2.jpg" class="img-responsive" alt=""></div>
+                            </div>
+                            <div class="item">
+                                <div class="company-image"><img src="images/portfolio/grid/portfolio-3.jpg" class="img-responsive" alt=""></div>
+                            </div>
+                            <div class="item">
+                                <div class="company-image"><img src="images/portfolio/grid/portfolio-4.jpg" class="img-responsive" alt=""></div>
+                            </div>
+                            <div class="item">
+                                <div class="company-image"><img src="images/portfolio/grid/portfolio-5.jpg" class="img-responsive" alt=""></div>
                             </div>
                         </div>
-
-
-
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -66,32 +70,5 @@
             </div>
         </div>
     </div>
-
-</section>
-<section class="page-container about-us-page p-b-0">
-    <div class="our-company">
-        <div class="container">
-            <div class="section-title">
-                <h2>Download Brochure</h2>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-8">
-                    <div class="company-intro m-b-30">
-                        <!--<h4>We Love What We Do</h4>-->
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, odio, cumque. Soluta porro voluptatibus illo rerum ducimus ad error assumenda dignissimos aspernatur commodi mollitia asperiores doloribus, placeat veniam nam.
-
-we would love to hear from you</p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    
-                        <div class="text-center m-t-20 m-b-20"><a ng-click="openForm()" class="btn btn-lg btn-normal">Download</a></div>
-                    
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
+    
 </section>

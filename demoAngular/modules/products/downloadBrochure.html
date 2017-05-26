@@ -1,0 +1,36 @@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button>
+    <h4 class="modal-title">Download Brochure</h4>
+</div>
+<div class="modal-body"> 
+
+    <form>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <input placeholder="First Name" class="form-control" type="text">
+            </div>
+            <div class="col-md-6 form-group">
+                <input placeholder="Last Name" class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <input placeholder="Mobile" class="form-control" type="text">
+            </div>
+            <div class="col-md-6 form-group">
+                <input placeholder="Email" class="form-control" type="email">
+            </div>
+        </div> 
+        <textarea class="form-control" placeholder="Message" rows="3"></textarea>
+    </form> 
+
+    <div class="modal-footer">
+        <!--<a ng-href="{{productCatelogRandom}}" target="_blank">DownloadBrr</a>-->
+        <a title="Download" ng-href="{{productCatelogRandom}}" target="_blank"  download="" class='remove-row'>
+            <i class="fa fa-file-pdf-o"></i>
+        </a>
+        <button type="button" class="btn btn-xs theme-btn-default" ng-click="downloadBrochure()">Download</button>
+        <button type="button" class=" btn  btn-xs theme-btn-default defaultCancleBTn" data-dismiss="modal" ng-click="cancel()">cancle</button>
+    </div>
+</div>

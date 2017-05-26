@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module("demoApp", ["ngRoute"]);
+var app = angular.module("demoApp", ["ngRoute","ui.bootstrap"]);
 
 app.config(['$routeProvider',
     function ($routeProvider) {
@@ -29,7 +29,7 @@ app.config(['$routeProvider',
                     redirectTo: "/"
                 });
     }]);
-app.controller('commonCtrl', ['$scope', 'constant', 'httpMethodService','$filter', function ($scope, constant, httpMethodService,$filter) {
+app.controller('commonCtrl', ['$scope', 'constant', 'httpMethodService', '$filter', function ($scope, constant, httpMethodService, $filter) {
         var getProduct = constant.serverUrl + constant.product;
         var getCmsPages = constant.serverUrl + constant.cms;
         $scope.allProducts = [];
@@ -43,11 +43,10 @@ app.controller('commonCtrl', ['$scope', 'constant', 'httpMethodService','$filter
         httpMethodService.httpMethodCallforRowData("GET", getCmsPages, {}).success(function (response) {
             if (response.success) {
                 $scope.allCmsPages = response.pages;
-                if($scope.allCmsPages.length > 0){
-                    $scope.aboutUsCmsPage = $filter('filter')($scope.allCmsPages,{cmsName:'about_us'})[0];
-                    console.log($scope.allCmsPages,'$scope.allCmsPages')
+                if ($scope.allCmsPages.length > 0) {
+                    $scope.aboutUsCmsPage = $filter('filter')($scope.allCmsPages, {cmsName: 'about_us'})[0];
                 }
-                
+
             }
         });
     }]);

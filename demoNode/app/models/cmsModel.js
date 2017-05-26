@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function (sequelize, DataTypes) {
-    var promo = sequelize.define("cms", {
+    var cms = sequelize.define("cms", {
         cmsId: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
         cmsName: {type: DataTypes.STRING},
         cmsDisplayName: {type: DataTypes.STRING},
@@ -13,5 +13,5 @@ module.exports = function (sequelize, DataTypes) {
     },{
         timestamps: true,
     });
-    return promo;
+    return cms;
 };
