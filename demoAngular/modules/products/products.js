@@ -8,8 +8,6 @@ app.controller('productDetailCtrl', ['$scope', '$timeout', '$routeParams', 'http
         httpMethodService.httpMethodCallforRowData("GET", getProductInfo, {}).success(function (response) {
             if (response.success) {
                 $scope.product = response.product;
-
-                console.log($scope.product)
             }
         });
         $timeout(function () {
@@ -31,20 +29,25 @@ app.controller('productDetailCtrl', ['$scope', '$timeout', '$routeParams', 'http
                 windowClass: '',
                 backdrop: 'static',
                 resolve: {
-                    productCatelogRandom:function(){
+                    productCatelogRandom: function () {
                         return $scope.product.productCatelogRandom;
+                    },
+                    productName: function () {
+                        return $scope.product.productName;
                     }
                 }
             });
         }
     }]);
 
-app.controller("downloadBrochure", ['$scope', '$modalInstance','productCatelogRandom', function ($scope, $modalInstance,productCatelogRandom) {
+app.controller("downloadBrochure", ['$scope', '$modalInstance', 'productCatelogRandom', 'productName', function ($scope, $modalInstance, productCatelogRandom, productName) {
+        
+        $scope.formsubmitedSuccessfully = false;
         $scope.productCatelogRandom = productCatelogRandom;
-        console.log(productCatelogRandom)
-        $scope.downloadBrochure = function () {
-//            $modalInstance.close();
-        };
+        $scope.productName = productName;
+        $scope.close = function () {
+            $modalInstance.close();
+        }; 
 
         $scope.cancel = function () {
             $modalInstance.dismiss();

@@ -4,6 +4,9 @@ module.exports = function (sequelize, DataTypes) {
     var contactus = sequelize.define("contactus", {
         contactId: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
         contactName: {type: DataTypes.STRING},
+        ConatctLastName: {type: DataTypes.STRING},
+        contactEmailId: {type: DataTypes.STRING},
+        contactPhone: {type: DataTypes.STRING},
         InquiryProductName: {type: DataTypes.STRING},
         InfoDesc: {type: DataTypes.STRING},
         contactedUser: {type: DataTypes.BOOLEAN, defaultValue: false},

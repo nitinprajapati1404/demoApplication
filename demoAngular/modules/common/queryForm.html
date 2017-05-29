@@ -1,0 +1,53 @@
+<form name="downloadBrochure" ng-submit="submitQuery()" ng-show="!formsubmitedSuccessfully">
+    <div class="row">
+        <div class="col-md-6 form-group" ng-class="{'has-error': downloadBrochure.contactName.$invalid && downloadBrochure.contactName.$touched }">
+            <input name="contactName" ng-model="query.contactName" placeholder="First Name" class="form-control" type="text" required>
+        </div>
+        <div class="col-md-6 form-group" ng-class="{'has-error': downloadBrochure.ConatctLastName.$invalid && downloadBrochure.ConatctLastName.$touched }">
+            <input name="ConatctLastName" ng-model="query.ConatctLastName" placeholder="Last Name" class="form-control" type="text" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group" ng-class="{'has-error': downloadBrochure.contactPhone.$invalid && downloadBrochure.contactPhone.$touched }">
+            <input name="contactPhone" ng-model="query.contactPhone" ng-pattern="/^[0-9]{10,10}$/" placeholder="Mobile number without STD code" class="form-control" type="text" onkeypress='return ((event.charCode >= 48 && event.charCode <= 57) || event.keyCode >= 8 || event.keyCode >= 46 || event.keyCode == 13)' required>
+            <div class="error" ng-show="downloadBrochure.contactPhone.$touched">
+                <span ng-show="downloadBrochure.contactPhone.$invalid && !downloadBrochure.contactPhone.$error.required" class="error">Please enter valid phone number</span>
+            </div>
+        </div>
+        <div class="col-md-6 form-group" ng-class="{'has-error': downloadBrochure.contactEmailId.$invalid && downloadBrochure.contactEmailId.$touched }">
+
+            <input type="email" validateEmail name="contactEmailId" 
+                   ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                   class="form-control  form-email" placeholder="Email" 
+                   ng-model="query.contactEmailId" required>
+
+
+            <div class="error" ng-show="downloadBrochure.contactEmailId.$touched">
+                <span ng-show="downloadBrochure.contactEmailId.$invalid && !downloadBrochure.contactEmailId.$error.required" class="error">Please enter valid email address</span>
+            </div>
+
+        </div>
+    </div> 
+    <div class="row" ng-if="!productName">
+        <div class="col-md-12 form-group" ng-class="{'has-error': downloadBrochure.InquiryProductName.$invalid && downloadBrochure.InquiryProductName.$touched }">
+            <input name="InquiryProductName" ng-model="query.InquiryProductName" placeholder="Product Name" class="form-control" type="text" required>
+        </div>
+    </div>  
+    <div class="row">
+        <div class="col-md-12 form-group" ng-class="{'has-error': downloadBrochure.InfoDesc.$invalid && downloadBrochure.InfoDesc.$touched }">
+            <textarea name="InfoDesc" ng-model="query.InfoDesc" class="form-control" placeholder="Message" rows="3" required></textarea>
+        </div>
+    </div>  
+    <div class="text-right">
+        <button ng-if="!productName" type="submit" class="btn btn-md btn-normal m-b-10" ng-disabled="downloadBrochure.$invalid">Submit</button>
+        <button ng-if="productName" type="submit" class="btn btn-md btn-normal" ng-disabled="downloadBrochure.$invalid">Download</button>
+        <button type="button" ng-if="productName" class=" btn btn-md btn-normal" data-dismiss="modal" ng-click="cancel()">Cancle</button>
+    </div>
+</form> 
+<style>
+    .error {
+        color: #ff0000;
+        display: inline-block;
+        /*margin-top: 5px;*/
+    }
+</style>

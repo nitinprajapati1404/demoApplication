@@ -150,6 +150,13 @@
 }
 .owl-buttons { display: none; }
 
+.thankyou { margin-bottom: 20px; }
+.thankyou i { font-size: 60px; color: #009926; }
+.thankyou h2 { display: block;  font-size: 23px; font-weight: normal;}
+.modal-title{
+    padding-bottom: 0;
+}
+
 @media screen and (max-width:500px) {
    .banner-slider .item{ min-height: 450px;  }
    .banner-content {
@@ -159,7 +166,4 @@
     line-height: 30px;
 }
 .banner-slider .item { padding-left: 20px; }
-
-
-
 }
