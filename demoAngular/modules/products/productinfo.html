@@ -1,5 +1,5 @@
 <section class="full-height-section banner-slider">
-    <div  class="owl-demo owl-carousel owl-theme">
+    <div id="owlDemo" class="owl-carousel owl-theme">
 
         <div  class="item" style="background-image:url('{{product.productHomePageImageRandom}}'); background-repeat: no-repeat; background-size: cover;">
 
@@ -33,7 +33,10 @@
                     <div class="company-image-slider">
                         <div class="owl-demo owl-carousel owl-theme">
                             <div class="item" ng-repeat="pImage in product.productImages">
-                                <div class="company-image"><img ng-src="{{pImage.imageRandom}}" class="img-responsive" alt=""></div>
+                                <div class="company-image">
+                                    <a class="grouped_elements" rel="group1" ng-href="{{pImage.imageRandom}}">
+                                        <img ng-src="{{pImage.imageRandom}}" class="img-responsive" alt="">
+                                    </a></div>
                             </div>
                         </div>
 
@@ -80,13 +83,13 @@
                         <!--<h4>We Love What We Do</h4>-->
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, odio, cumque. Soluta porro voluptatibus illo rerum ducimus ad error assumenda dignissimos aspernatur commodi mollitia asperiores doloribus, placeat veniam nam.
 
-we would love to hear from you</p>
+                            we would love to hear from you</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    
-                        <div class="text-center m-t-20 m-b-20"><a ng-click="openForm()" class="btn btn-lg btn-normal">Download</a></div>
-                    
+
+                    <div class="text-center m-t-20 m-b-20"><a ng-click="openForm()" class="btn btn-lg btn-normal">Download</a></div>
+
                 </div>
 
             </div>

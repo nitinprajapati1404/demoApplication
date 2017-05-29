@@ -11,6 +11,15 @@ app.controller('productDetailCtrl', ['$scope', '$timeout', '$routeParams', 'http
             }
         });
         $timeout(function () {
+            $("#owlDemo").owlCarousel({
+                navigation: true, // Show next and prev buttons
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true
+
+            });
+        },0)
+        $timeout(function () {
 
             $(".owl-demo").owlCarousel({
                 navigation: true, // Show next and prev buttons
@@ -19,7 +28,7 @@ app.controller('productDetailCtrl', ['$scope', '$timeout', '$routeParams', 'http
                 singleItem: true
 
             });
-        }, 200)
+        }, 250)
 
         $scope.openForm = function () {
             var modalInstance = $modal.open({
@@ -41,13 +50,13 @@ app.controller('productDetailCtrl', ['$scope', '$timeout', '$routeParams', 'http
     }]);
 
 app.controller("downloadBrochure", ['$scope', '$modalInstance', 'productCatelogRandom', 'productName', function ($scope, $modalInstance, productCatelogRandom, productName) {
-        
+
         $scope.formsubmitedSuccessfully = false;
         $scope.productCatelogRandom = productCatelogRandom;
         $scope.productName = productName;
         $scope.close = function () {
             $modalInstance.close();
-        }; 
+        };
 
         $scope.cancel = function () {
             $modalInstance.dismiss();

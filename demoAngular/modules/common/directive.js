@@ -1,9 +1,16 @@
-app.directive("headerPage", [function () {
+app.directive("headerPage", ['$location', '$rootScope', function ($location, $rootScope) {
         return{
             restrict: 'E,A',
             templateUrl: 'modules/common/header.html',
             link: function ($scope) {
-
+                $scope.url = $location.path().split('/');
+                $scope.$on("$locationChangeSuccess", function () {
+                    $scope.url = $location.path().split('/');
+                });
+                
+                $scope.setArialExapnd = function(){
+//                    $(".changeNavigation").attr("aria-expanded",false);
+                }
             }
         }
     }])
