@@ -63,26 +63,11 @@ app.delete('/newsLater/:id', controllers.goalRouter.removeNewsLatter);
  * **************************** Promotion Routing Start ************************************************************************
  */
 
-app.post('/promotions', controllers.promoRouter.addPromotion);
-app.get('/promotions', controllers.promoRouter.getPromotionList);
-app.delete('/promotions', controllers.promoRouter.deleteAllPromotions);
-app.get('/promotions/:id', controllers.promoRouter.getPromotionDetail);
-app.put('/promotions/:id', controllers.promoRouter.udpatePromotionDetail);
-app.delete('/promotions/:id', controllers.promoRouter.deletePromotion);
-
-/*  
- * **************************** END ************************************************************************
- */
-/*  
- * **************************** Leader Routing Start ************************************************************************
- */
-
-app.post('/leadership', controllers.leaderRouter.addLeader);
-app.get('/leadership', controllers.leaderRouter.getLeaderList);
-app.delete('/leadership', controllers.leaderRouter.deleteAllLeaders);
-app.get('/leadership/:id', controllers.leaderRouter.getLeaderDetail);
-app.put('/leadership/:id', controllers.leaderRouter.udpateLeaderDetail);
-app.delete('/leadership/:id', controllers.leaderRouter.deleteLeader);
+app.post('/clientFeedback', controllers.clientFeedbackRouter.addClientFeedback);
+app.get('/clientFeedback', controllers.clientFeedbackRouter.getAllClientFeedback);
+app.get('/clientFeedback/:id', controllers.clientFeedbackRouter.getIndividualClientFeedback);
+app.put('/clientFeedback/:id', controllers.clientFeedbackRouter.updateClientFeedback);
+app.delete('/clientFeedback/:id', controllers.clientFeedbackRouter.deleteClientFeedback);
 
 /*  
  * **************************** END ************************************************************************

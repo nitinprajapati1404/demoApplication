@@ -4,6 +4,7 @@ module.exports = function (sequelize, DataTypes) {
         clientName: {type: DataTypes.STRING},
         clientPosition: {type: DataTypes.STRING},
         clientImage: {type: DataTypes.STRING},
+        clientImageRandom: {type: DataTypes.STRING},
         isActive: {type: DataTypes.BOOLEAN, defaultValue: true}
     },{
         timestamps: false,

@@ -7,4 +7,5 @@ module.exports = {
     cmsRouter: require('./cms.ctrl'),
     contactUsRouter: require('./contactus.ctrl'),
     goalRouter: require('./goal.ctrl'),
+    clientFeedbackRouter: require('./clientFeedback.ctrl'),
 };
