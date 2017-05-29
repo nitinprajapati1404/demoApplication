@@ -6,4 +6,5 @@ module.exports = {
     productRouter: require('./product.ctrl'),
     cmsRouter: require('./cms.ctrl'),
     contactUsRouter: require('./contactus.ctrl'),
+    goalRouter: require('./goal.ctrl'),
 };

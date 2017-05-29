@@ -45,15 +45,16 @@ app.delete('/contactUs/:id', controllers.contactUsRouter.removeContactUs);
  * **************************** END ************************************************************************
  */
 /*  
- * **************************** Dish Routing Start ************************************************************************
+ * **************************** Goal and newslater Routing Start ************************************************************************
  */
 
-app.post('/dishes', controllers.dishRouter.addDish);
-app.get('/dishes', controllers.dishRouter.getDishList);
-app.delete('/dishes', controllers.dishRouter.deleteAllDish);
-app.get('/dishes/:id', controllers.dishRouter.getDishDetail);
-app.put('/dishes/:id', controllers.dishRouter.udpateDishDetail);
-app.delete('/dishes/:id', controllers.dishRouter.deleteDish);
+app.post('/goal', controllers.goalRouter.addgoal);
+app.get('/goal', controllers.goalRouter.getAllGoal);
+app.put('/goal/:id', controllers.goalRouter.updateGoal);
+app.delete('/goal/:id', controllers.goalRouter.removeGoal);
+app.post('/newsLater', controllers.goalRouter.addNewsLatter);
+app.get('/newsLater', controllers.goalRouter.getAllNewsLatters);
+app.delete('/newsLater/:id', controllers.goalRouter.removeNewsLatter);
 
 /*  
  * **************************** END ************************************************************************

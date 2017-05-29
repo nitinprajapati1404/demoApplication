@@ -7,29 +7,7 @@ module.exports = function (sequelize, DataTypes) {
         goalDesc: {type: DataTypes.STRING},
         isGoal: {type: DataTypes.BOOLEAN, defaultValue: true}
     },{
-        timestamps: true,
+        timestamps: false,
     });
     return goal;
-};
-module.exports = function (sequelize, DataTypes) {
-    var clientsFeedback = sequelize.define("clientsFeedBack", {
-        clientId: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-        clientName: {type: DataTypes.STRING},
-        clientPosition: {type: DataTypes.STRING},
-        clientImage: {type: DataTypes.STRING},
-        isActive: {type: DataTypes.BOOLEAN, defaultValue: true}
-    },{
-        timestamps: true,
-    });
-    return clientsFeedback;
-};
-module.exports = function (sequelize, DataTypes) {
-    var newslatter = sequelize.define("newslatter", {
-        newslatterId: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-        newslattereEmailId: {type: DataTypes.STRING},
-        isActive: {type: DataTypes.BOOLEAN, defaultValue: true}
-    },{
-        timestamps: true,
-    });
-    return newslatter;
 };
