@@ -7,4 +7,5 @@ app.constant("constant",{
     "getAddress":"address",
     "goal":"goal",
     "clientFeedback":"clientFeedback",
+    "newsLater":"newsLater",
 })

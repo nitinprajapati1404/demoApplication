@@ -22,7 +22,7 @@ app.directive("queryForm", ['httpMethodService', 'constant', function (httpMetho
             scope: {
                 formsubmitedSuccessfully: "=",
                 productName: "@",
-                cancel:"="
+                cancel: "="
             },
             link: function ($scope) {
                 $scope.responseSent = false;
@@ -41,7 +41,7 @@ app.directive("queryForm", ['httpMethodService', 'constant', function (httpMetho
                         if (response.success) {
                             if (typeof $scope.formsubmitedSuccessfully != 'undefined') {
                                 $scope.formsubmitedSuccessfully = true;
-                            }else{
+                            } else {
                                 $scope.responseSent = "Thank you for showing Interest. we will contact you soon."
                             }
                             setDetaultValue();
@@ -53,16 +53,28 @@ app.directive("queryForm", ['httpMethodService', 'constant', function (httpMetho
             }
         }
     }])
-app.directive("footerPage", [function () {
+app.directive("footerPage", ['httpMethodService', 'constant', function (httpMethodService, constant) {
         return{
             restrict: 'E,A',
             templateUrl: 'modules/common/footer.html',
             scope: {
-                address:"="
+                address: "="
             },
             link: function ($scope) {
+                var newLaterUrl = constant.serverUrl + constant.newsLater;
+                $scope.newslater = {};
                 var d = new Date();
                 $scope.currentYear = d.getFullYear();
+                $scope.subscribeNewsLater = function () {
+
+                    httpMethodService.httpMethodCallforRowData("POST", newLaterUrl, $scope.newslater).success(function (response) {
+                        if (response.success) {
+                            $scope.newslater = {};
+                        }
+                    });
+
+
+                }
             }
         }
     }])

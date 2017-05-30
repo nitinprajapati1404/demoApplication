@@ -5,12 +5,12 @@
                 <div class="col-xs-12 col-sm-4 col-md-4">
                     <div class="footer-widget">
                         <img src="images/Logo.png" class="m-b-20" alt="">
-<!--                        <p>Monotonectally
-                            recaptiualize end-to-end materials before B2C e-commerce. Assertively 
-                            initiate value-added infrastructures via functionalized users. 
-                            Efficiently whiteboard ubiquitous best practices through adaptive 
-                            paradigms. Continually revolutionize.
-                        </p>-->
+                        <!--                        <p>Monotonectally
+                                                    recaptiualize end-to-end materials before B2C e-commerce. Assertively 
+                                                    initiate value-added infrastructures via functionalized users. 
+                                                    Efficiently whiteboard ubiquitous best practices through adaptive 
+                                                    paradigms. Continually revolutionize.
+                                                </p>-->
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-4">
@@ -35,9 +35,14 @@
                             <span></span>
                         </div>
                         <p>Signup your newsletter</p>
-                        <form>
-                            <div class="form-group"><input class="form-control" id="exampleInputEmail1" placeholder="Email" type="email"></div>
-                            <div class="form-group"><button class="btn btn-sm btn-rounded btn-normal" type="submit">Submit</button></div>
+                        <form name="subscribeNewsLater" ng-submit="subscribeNewsLater()">
+                            <div class="form-group">
+                                <input type="email" validateEmail name="newslattereEmailId" 
+                                       ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                                       class="form-control  form-email" placeholder="Email" 
+                                       ng-model="newslater.newslattereEmailId" required>
+                            </div>
+                            <div class="form-group"><button class="btn btn-sm btn-rounded btn-normal" type="submit" ng-disabled="subscribeNewsLater.$invalid">Submit</button></div>
                         </form>
                     </div>
                 </div>
@@ -46,12 +51,12 @@
     </div>
     <div class="copyright-footer">
         <div class="container">
-<!--            <ul class="m-b-10 text-center">
-                <li class="active"><a href="#/">Home</a></li>
-                    <li><a ng-href="#/about-us">About Us</a></li>
-                    <li><a ng-href="#/products">Products</a></li> 
-                    <li><a ng-href="#/contact-us">Contact Us</a></li>
-            </ul>-->
+            <!--            <ul class="m-b-10 text-center">
+                            <li class="active"><a href="#/">Home</a></li>
+                                <li><a ng-href="#/about-us">About Us</a></li>
+                                <li><a ng-href="#/products">Products</a></li> 
+                                <li><a ng-href="#/contact-us">Contact Us</a></li>
+                        </ul>-->
             <p class="text-center">© {{currentYear}} Enterprise. All rights reserved.</p>
         </div>
     </div>
