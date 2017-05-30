@@ -135,7 +135,7 @@ module.exports = {
     },
     // get address
     getAddress: function (req, res) {
-        models.myaddress.findById(req.params.id).then(function (myaddress) {
+        models.myaddress.findAll().then(function (myaddress) {
             return res.json({
                 success: true,
                 message: "address info.",

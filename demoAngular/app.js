@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module("demoApp", ["ngRoute","ui.bootstrap"]);
+var app = angular.module("demoApp", ["ngRoute", "ui.bootstrap"]);
 
 app.config(['$routeProvider',
     function ($routeProvider) {
@@ -32,8 +32,20 @@ app.config(['$routeProvider',
 app.controller('commonCtrl', ['$scope', 'constant', 'httpMethodService', '$filter', function ($scope, constant, httpMethodService, $filter) {
         var getProduct = constant.serverUrl + constant.product;
         var getCmsPages = constant.serverUrl + constant.cms;
+        var getAddress = constant.serverUrl + constant.getAddress;
+        var getGoals = constant.serverUrl + constant.goal;
+        $scope.address = {};
         $scope.allProducts = [];
         $scope.allCmsPages = [];
+        $scope.allGoals = [];
+        httpMethodService.httpMethodCallforRowData("GET", getAddress, {}).success(function (response) {
+            if (response.success) {
+                if (response.myaddress.length > 0) {
+                    $scope.address = response.myaddress[0];
+                }
+
+            }
+        });
         httpMethodService.httpMethodCallforRowData("GET", getProduct, {}).success(function (response) {
             if (response.success) {
                 $scope.allProducts = response.products;
@@ -47,6 +59,11 @@ app.controller('commonCtrl', ['$scope', 'constant', 'httpMethodService', '$filte
                     $scope.aboutUsCmsPage = $filter('filter')($scope.allCmsPages, {cmsName: 'about_us'})[0];
                 }
 
+            }
+        });
+        httpMethodService.httpMethodCallforRowData("GET", getGoals, {}).success(function (response) {
+            if (response.success) {
+                    $scope.allGoals = response.goals;
             }
         });
     }]);

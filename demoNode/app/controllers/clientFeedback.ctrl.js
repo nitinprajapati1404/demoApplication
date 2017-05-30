@@ -6,6 +6,7 @@ var allAttributesOfClient = [
     'clientId',
     'clientName',
     'clientPosition',
+    'clientFeedback',
     'clientImage',
     [models.sequelize.fn('CONCAT', process.env.CONTENT_URL_CLIENT, models.sequelize.col('clientImageRandom')), 'productThumbImageRandom']
 ];

@@ -18,9 +18,11 @@
                      <div class="contact-info">
                         <h4>Corporate Office</h4>
                         <ul>
-                           <li><i class="fa fa-map-marker"></i> 15 Design Street, Melbourne<br>Australia 54214</li>
-                           <li><i class="fa fa-phone"></i> +1-541-754-3010</li>
-                           <li><i class="fa fa-envelope"></i> <a href="mailto:info@construction.com">info@construction.com</a></li>
+                           <li><i class="fa fa-map-marker"></i> {{address.addressDesc}}<br>{{address.cityName}}
+                                <br>{{address.countryName}} {{address.pincode}}</li>
+                           <li><i class="fa fa-phone"></i> +1-{{address.phoneNumber}}</li>
+                           <li><i class="fa fa-phone"></i> +1-{{address.alternetPhoneNumber}}</li>
+                           <li><i class="fa fa-envelope"></i> <a href="mailto:{{address.emailId}}">{{address.emailId}}</a></li>
                         </ul>
                      </div>
                   </div>

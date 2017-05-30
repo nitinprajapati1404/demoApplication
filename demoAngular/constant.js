@@ -4,4 +4,7 @@ app.constant("constant",{
     "product":"product",
     "cms":"cms/",
     "contactUs":"contactUs",
+    "getAddress":"address",
+    "goal":"goal",
+    "clientFeedback":"clientFeedback",
 })

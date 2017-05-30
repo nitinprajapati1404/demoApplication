@@ -5,12 +5,12 @@
                 <div class="col-xs-12 col-sm-4 col-md-4">
                     <div class="footer-widget">
                         <img src="images/Logo.png" class="m-b-20" alt="">
-                        <p>Monotonectally
+<!--                        <p>Monotonectally
                             recaptiualize end-to-end materials before B2C e-commerce. Assertively 
                             initiate value-added infrastructures via functionalized users. 
                             Efficiently whiteboard ubiquitous best practices through adaptive 
                             paradigms. Continually revolutionize.
-                        </p>
+                        </p>-->
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-4">
@@ -20,9 +20,11 @@
                             <span></span>
                         </div>
                         <ul class="menu-links">
-                            <li class="address">Address: 15 Design Street, Melbourne<br>Australia 54214</li>
-                            <li>Phone: +1-541-754-3010</li>
-                            <li>Email: <a href="#">info@construction.com</a></li>
+                            <li class="address">Address: {{address.addressDesc}}<br>{{address.cityName}}
+                                <br>{{address.countryName}} {{address.pincode}}</li>
+                            <li>Phone: +91-{{address.phoneNumber}}</li>
+                            <li>Phone: +91-{{address.alternetPhoneNumber}}</li>
+                            <li>Email: <a href="javascript:void(0)">{{address.emailId}}</a></li>
                         </ul>
                     </div>
                 </div>

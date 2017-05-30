@@ -7,8 +7,8 @@ app.directive("headerPage", ['$location', '$rootScope', function ($location, $ro
                 $scope.$on("$locationChangeSuccess", function () {
                     $scope.url = $location.path().split('/');
                 });
-                
-                $scope.setArialExapnd = function(){
+
+                $scope.setArialExapnd = function () {
 //                    $(".changeNavigation").attr("aria-expanded",false);
                 }
             }
@@ -51,6 +51,9 @@ app.directive("footerPage", [function () {
         return{
             restrict: 'E,A',
             templateUrl: 'modules/common/footer.html',
+            scope: {
+                address:"="
+            },
             link: function ($scope) {
                 var d = new Date();
                 $scope.currentYear = d.getFullYear();

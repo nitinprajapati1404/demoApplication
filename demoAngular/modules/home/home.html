@@ -22,51 +22,17 @@
         <div class="section-title">
             <h2>Why we?</h2>
         </div>
+        <!--<span class="icon m-b-20"><a href="javascript:void(0)"><i class="fa fa-star-o" aria-hidden="true"></i></a></span>-->
+<!--         <span class="icon m-b-20"><a href="javascript:void(0)"><i class="fa fa-pencil" aria-hidden="true"></i></a></span>
+         <span class="icon m-b-20"><a href="javascript:void(0)"><i class="fa fa-wrench" aria-hidden="true"></i></a></span>
+         <span class="icon m-b-20"><a href="javascript:void(0)"><i class="fa fa-list-alt" aria-hidden="true"></i></a></span>-->
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="goal in allGoals track by $index" ng-if="!goal.isGoal">
                 <div class="icon-box m-b-40 text-center">
                     <span class="icon m-b-20"><a href="javascript:void(0)"><i class="fa fa-star-o" aria-hidden="true"></i></a></span>
                     <div class="content">
-                        <h4><a href="javascript:void(0)">Engineers</a></h4>
-                        <p>Continually
-                            provide access to interoperable strategic theme areas for 
-                            functionalized data. Professionally whiteboard team building platforms.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="icon-box m-b-40 text-center">
-                    <span class="icon m-b-20"><a href="javascript:void(0)"><i class="fa fa-pencil" aria-hidden="true"></i></a></span>
-                    <div class="content">
-                        <h4><a href="javascript:void(0)">Right Plans</a></h4>
-                        <p>Continually
-                            provide access to interoperable strategic theme areas for 
-                            functionalized data. Professionally whiteboard team building platforms.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="icon-box m-b-40 text-center">
-                    <span class="icon m-b-20"><a href="javascript:void(0)"><i class="fa fa-wrench" aria-hidden="true"></i></a></span>
-                    <div class="content">
-                        <h4><a href="javascript:void(0)">Quality Materials</a></h4>
-                        <p>Continually
-                            provide access to interoperable strategic theme areas for 
-                            functionalized data. Professionally whiteboard team building platforms.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="icon-box m-b-40 text-center">
-                    <span class="icon m-b-20"><a href="javascript:void(0)"><i class="fa fa-list-alt" aria-hidden="true"></i></a></span>
-                    <div class="content">
-                        <h4><a href="javascript:void(0)">Quick Completion</a></h4>
-                        <p>Continually
-                            provide access to interoperable strategic theme areas for 
-                            functionalized data. Professionally whiteboard team building platforms.
+                        <h4><a href="javascript:void(0)">{{goal.goalTitle}}</a></h4>
+                        <p>{{goal.goalDesc}}
                         </p>
                     </div>
                 </div>

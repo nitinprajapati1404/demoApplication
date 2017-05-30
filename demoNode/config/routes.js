@@ -40,7 +40,7 @@ app.get('/contactUs/:id', controllers.contactUsRouter.getIndividualContactUs);
 app.put('/contactUs/:id', controllers.contactUsRouter.updateContactUs);
 app.delete('/contactUs/:id', controllers.contactUsRouter.removeContactUs);
 //app.post('/address', controllers.contactUsRouter.addAddress); 
-app.get('/address/:id', controllers.contactUsRouter.getAddress);
+app.get('/address', controllers.contactUsRouter.getAddress);
 app.put('/address/:id', controllers.contactUsRouter.updateAddress);
 /*  
  * **************************** END ************************************************************************
