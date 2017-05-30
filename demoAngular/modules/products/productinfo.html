@@ -1,20 +1,10 @@
-<section class="full-height-section banner-slider">
-    <div id="owlDemo" class="owl-carousel owl-theme">
-
-        <div  class="item" style="background-image:url('{{product.productHomePageImageRandom}}'); background-repeat: no-repeat; background-size: cover;">
-
-            <div class="container">
-                <div class="row">
-
-                    <h1 class="banner-content" ng-bind="product.productName"></h1>
-                    <div class="get-quote"><a ng-href="#/product/{{product.productId}}" class="btn btn-md btn-inverse btn-border m-t-10">Read More</a></div>		
-                </div>	
-            </div>
-
+<section class="page-header" style="background-image:url('{{product.productHomePageImageRandom}}'); background-repeat: no-repeat; background-size: cover;">
+    <div class="overlay">
+        <div class="container">
+            <h1 class="page-title m-b-10" ng-bind="product.productName"></h1>
         </div>
-
     </div>
-</section>
+</section> 
 
 <section class="page-container about-us-page p-b-0">
     <div class="our-company">
@@ -24,7 +14,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
-                    <div class="company-intro m-b-30">
+                    <div class="company-intro m-b-30 text-justify">
                         <!--<h4>We Love What We Do</h4>-->
                         <p>{{product.productDesc}}</p>
                     </div>

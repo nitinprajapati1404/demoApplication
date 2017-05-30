@@ -1,4 +1,13 @@
 <form name="downloadBrochure" ng-submit="submitQuery()" ng-show="!formsubmitedSuccessfully">
+    <div class="row" ng-if="responseSent">
+        <div class="col-md-12">
+            <div class="alert alert-success">
+                <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            <span ng-bind="responseSent"></span>
+            </div>
+        </div>
+        
+    </div>
     <div class="row">
         <div class="col-md-6 form-group" ng-class="{'has-error': downloadBrochure.contactName.$invalid && downloadBrochure.contactName.$touched }">
             <input name="contactName" ng-model="query.contactName" placeholder="First Name" class="form-control" type="text" required>
@@ -10,7 +19,7 @@
     <div class="row">
         <div class="col-md-6 form-group" ng-class="{'has-error': downloadBrochure.contactPhone.$invalid && downloadBrochure.contactPhone.$touched }">
             <input name="contactPhone" ng-model="query.contactPhone" ng-pattern="/^[0-9]{10,10}$/" placeholder="Mobile number without STD code" class="form-control" type="text" onkeypress='return ((event.charCode >= 48 && event.charCode <= 57) || event.keyCode >= 8 || event.keyCode >= 46 || event.keyCode == 13)' required>
-            <div class="error" ng-show="downloadBrochure.contactPhone.$touched">
+            <div class="error" ng-if="downloadBrochure.contactPhone.$touched">
                 <span ng-show="downloadBrochure.contactPhone.$invalid && !downloadBrochure.contactPhone.$error.required" class="error">Please enter valid phone number</span>
             </div>
         </div>
@@ -22,7 +31,7 @@
                    ng-model="query.contactEmailId" required>
 
 
-            <div class="error" ng-show="downloadBrochure.contactEmailId.$touched">
+            <div class="error" ng-if="downloadBrochure.contactEmailId.$touched">
                 <span ng-show="downloadBrochure.contactEmailId.$invalid && !downloadBrochure.contactEmailId.$error.required" class="error">Please enter valid email address</span>
             </div>
 

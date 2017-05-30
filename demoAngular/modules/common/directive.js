@@ -8,8 +8,9 @@ app.directive("headerPage", ['$location', '$rootScope', function ($location, $ro
                     $scope.url = $location.path().split('/');
                 });
 
-                $scope.setArialExapnd = function () {
+                $scope.closeDropdown = function () {
 //                    $(".changeNavigation").attr("aria-expanded",false);
+                    $("#main-navbar-collapse").removeClass("in");
                 }
             }
         }
@@ -20,12 +21,15 @@ app.directive("queryForm", ['httpMethodService', 'constant', function (httpMetho
             templateUrl: 'modules/common/queryForm.html',
             scope: {
                 formsubmitedSuccessfully: "=",
-                productName: "@"
+                productName: "@",
+                cancel:"="
             },
             link: function ($scope) {
+                $scope.responseSent = false;
                 var addQuery = constant.serverUrl + constant.contactUs;
                 var setDetaultValue = function () {
                     $scope.query = {};
+                    $scope.downloadBrochure.$setUntouched();
                     if (typeof $scope.productName != 'undefined') {
                         $scope.query.InquiryProductName = $scope.productName;
                     }
@@ -37,9 +41,11 @@ app.directive("queryForm", ['httpMethodService', 'constant', function (httpMetho
                         if (response.success) {
                             if (typeof $scope.formsubmitedSuccessfully != 'undefined') {
                                 $scope.formsubmitedSuccessfully = true;
+                            }else{
+                                $scope.responseSent = "Thank you for showing Interest. we will contact you soon."
                             }
-//                            setDetaultValue();
-
+                            setDetaultValue();
+//window.location.reload()
                         }
                     });
 

@@ -3,7 +3,6 @@ app.controller('aboutUsCtrl', ['$scope', 'constant', 'httpMethodService','$timeo
         httpMethodService.httpMethodCallforRowData("GET", getClientFeedback, {}).success(function (response) {
             if (response.success) {
                 $scope.feedbacks = response.feedbacks;
-                console.log($scope.feedbacks);
                 $timeout(function () {
                     $(".owl-demo").owlCarousel({
                         navigation: true, // Show next and prev buttons

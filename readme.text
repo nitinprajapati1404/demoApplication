@@ -1,0 +1,6 @@
+step 1 : goto demonode 
+step 2 : change env file based on your server and change path as per requirement
+step 3 : nodemon server.js
+step 4 : server will run on 7500 port and then hit demoAngular url
+
+enjoy
