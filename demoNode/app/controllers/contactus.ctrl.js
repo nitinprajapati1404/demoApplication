@@ -94,6 +94,59 @@ module.exports = {
                 message: err.message
             });
         });
-    }
+    },
+    // add adress
 
+    addAddress: function (req, res) {
+        models.myaddress.create(req.body).then(function (myaddress) {
+            return res.json({
+                success: true,
+                message: "Address added successfully.",
+                myaddress: myaddress
+            });
+        }).catch(Sequelize.ValidationError, function (err) {
+            return res.json({
+                success: true,
+                message: "something wrong.",
+            });
+        }).catch(function (err) {
+            return res.status(400).send({
+                message: err.message
+            });
+        });
+    },
+    // update address
+    updateAddress: function (req, res) {
+        models.myaddress.update(req.body, {where: {"addressId": req.params.id}}).then(function (address) {
+            return res.json({
+                success: true,
+                message: "address updated Successfully",
+            });
+        }).catch(Sequelize.ValidationError, function (err) {
+            return res.json({
+                success: true,
+                message: "something wrong.",
+            });
+        }).catch(function (err) {
+            return res.status(400).send({
+                message: err.message
+            });
+        });
+    },
+    // get address
+    getAddress: function (req, res) {
+        models.myaddress.findById(req.params.id).then(function (myaddress) {
+            return res.json({
+                success: true,
+                message: "address info.",
+                myaddress: myaddress
+            });
+        }).catch(Sequelize.ValidationError, function (err) {
+            return res.status(422).send(err.errors);
+        }).catch(function (err) {
+            return res.status(400).send({
+                message: err.message
+            });
+        });
+    },
 };
