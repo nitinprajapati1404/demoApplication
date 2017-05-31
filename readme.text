@@ -4,3 +4,14 @@ step 3 : nodemon server.js
 step 4 : server will run on 7500 port and then hit demoAngular url
 
 enjoy
+
+
+steps for gulp
+
+add packagejson with dependecies of gulp
+
+npm install
+
+gulp
+gulp clearJson
+gulp clearCache
