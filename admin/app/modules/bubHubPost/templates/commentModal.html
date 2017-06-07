@@ -1,0 +1,28 @@
+<div class="box-header with-border">
+              <h3 class="box-title">Comments</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove" ng-click="cancel()"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+
+<div class="box-body">
+              <div class="box-comments commnetModal">
+              <div class="box-comment" ng-repeat="comment in commentList">
+                <!-- User image -->
+                <img class="img-circle img-sm" ng-src="{{cdnUrl+comment.profilePic.folderName+comment.profilePic.fileName}}" alt="User Image">
+
+                <div class="comment-text">
+                      <span class="username">
+                        {{comment.userName}}
+                        <span class="text-muted pull-right">{{comment.createdAt | date:"mediumDate" }} {{comment.createdAt | date:"shortTime"  }}</span>
+                      </span><!-- /.username -->
+                  {{comment.comment}}
+                </div>
+                <!-- /.comment-text -->
+              </div>
+              <!-- /.box-comment -->
+              
+              <!-- /.box-comment -->
+            </div>
+  </div>

@@ -1,0 +1,29 @@
+<div class="box-header with-border">
+              <h3 class="box-title">Report Abuse List</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove" ng-click="cancel()"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+
+<div class="box-body">
+              <div class="box-comments commnetModal">
+              <div class="box-comment" ng-repeat="report in reportList">
+                <!-- User image -->
+                <img class="img-circle img-sm" ng-src="{{cdnUrl+report.profilePic.folderName+report.profilePic.fileName}}" alt="User Image">
+
+                <div class="comment-text">
+                      <span class="username">
+                        {{report.userName}}
+                        <span class="text-muted pull-right">{{report.createdAt | date:"mediumDate" }} {{report.createdAt | date:"shortTime"  }}</span>
+                      </span><!-- /.username -->
+                  <span class="label label-danger">{{report.abuseReason}}</span>    
+                  {{report.comment}}
+                </div>
+                <!-- /.comment-text -->
+              </div>
+              <!-- /.box-comment -->
+              
+              <!-- /.box-comment -->
+            </div>
+  </div>

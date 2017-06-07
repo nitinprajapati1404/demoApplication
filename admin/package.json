@@ -1,0 +1,35 @@
+{
+  "name": "adminangular",
+  "version": "1.0.0",
+  "description": "common admin angularjs",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://192.168.1.252/root/angular-commonadmin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-bytediff": "^1.0.0",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-remove-files": "0.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.1.2",
+    "randomstring": "^1.1.5"
+  },
+  "dependencies": {
+    "angular-ui-grid": "^4.0.4",
+    "gulp": "^3.9.1",
+    "gulp-bytediff": "^1.0.0",
+    "gulp-html-replace": "^1.6.2",
+    "underscore": "^1.8.3"
+  }
+}

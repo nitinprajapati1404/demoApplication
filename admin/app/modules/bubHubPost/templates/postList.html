@@ -1,0 +1,82 @@
+
+<div class="col-md-12">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="search" placeholder="Search by author name or description" ng-model="filters.search" ng-change="filterPost(filters)">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="checkbox check-icon"  title="View Love Post">
+
+                    <input type="checkbox" ng-model="filters.lovePost" value="true" ng-change="filterPost(filters)"> 
+                    <i class="fa fa-heart" ng-class="{'fa-heart active': filters.lovePost == true, 'fa-heart': filters.lovePost == false}"></i>
+                </div>
+                <div class="checkbox check-icon" title="View Report Abuse Post">
+                    <input type="checkbox" ng-model="filters.reportAbuse" value="true" ng-change="filterPost(filters)"> 
+                    <i class="fa fa-flag" ng-class="{'fa-flag active': filters.reportAbuse == true, 'fa-flag': filters.reportAbuse == false}" ></i>
+                </div>
+
+            </div>
+            <div class="col-md-2 text-right">
+                <a href="javascript:void(0)" ng-click="clearFilter()" class="btn btn-info">Clear</a>
+            </div>
+        </div>    
+        <div class="clearfix"></div>
+    </div>
+    <div class="box box-solid" ng-repeat="post in postList" ng-if="postList.length > 0">
+        <!-- /.box-header -->
+        <div class="box-body">
+
+            <div class="attachment-block clearfix">
+                <div class="pull-right"> 
+                    <a href="javascript:void(0)" class="btn btn-primary btn-xs" ng-if="post.isReportAbused > 0" ng-click="reportAbusePopup(post._id)"><i class="fa fa-flag" title="View Report Abuse"></i> &nbsp; {{post.isReportAbused}}</a>
+                    <a href="javascript:void(0)" class="btn btn-danger btn-xs" message="Are you sure you want to delete ?" ng-confirm="deletePost(post)"><i  title="Delete" class="fa fa-trash"></i></a>
+                </div>
+                <div class="post-Img">
+                    <a prettyp class="image" ng-href="{{postImageUrl+post.images.fileName}}" rel="prettyPhoto" target="_blank" title="" ng-if="post.mediaFlag == 'image'">
+                        <img src="assets/img/default-placeholder.png" ng-src="{{postThumbImageUrl+base64.encode(post.images.fileName)+'/'+base64.encode('150')}}"/>
+                    </a>
+                    
+                    <a href="javascript:void(0);" title="" ng-click="openPopup(post,postImageUrl)" ng-if="post.mediaFlag == 'video'">
+                        <img src="assets/img/default-placeholder.png" ng-src="{{postThumbImageUrl+base64.encode(post.videos.thumb)+'/'+base64.encode('150')}}"/>
+                        <div class="video-icon-wrap">                        
+                            <i class="fa fa-play"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="post-info">
+                    <div class="attachment-text">
+                        {{post.description}}
+                    </div>
+                    <!-- /.attachment-text -->
+                </div>
+                <!-- /.post-info -->
+            </div>
+
+            <ul class="list-inline mb0">
+                <li><a href="javascript:void(0)" ng-click="makeLovePost(post)" class="" ng-class="post.isLoved ? 'like-btn-active' : 'like-btn'" title="Love Post"><i class="fa fa-heart"></i></a></li>
+                <li> <i class="fa fa-user-circle-o margin-r-5"></i> {{post.users[0].name}}  </li>
+                <li> <i class="fa fa-calendar-check-o margin-r-5"></i> {{post.createdAt| date : "dd MMM yyyy hh:mm a"}}  </li>
+                <li class="pull-right">
+                    <a href="javascript:void(0)" class="btn btn-default btn-xs margin-r-5" ng-click="post.totalLikes > 0 ? likepopup(post._id):''">
+                        <i class="fa fa-thumbs-o-up margin-r-5"></i>Likes ({{post.totalLikes}})</a>
+                    <a href="javascript:void(0)" class="btn btn-default btn-xs"  ng-click="post.totalComments > 0 ? commentpopup(post._id):''">
+                        <i class="fa fa-comments-o margin-r-5"></i> Comments
+                        ({{post.totalComments}})
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <div ng-if="postList.length <= 0">
+        <h2>Data Not Found</h2>
+    </div>
+
+
+</div>
+<!-- /.row (main row) --
