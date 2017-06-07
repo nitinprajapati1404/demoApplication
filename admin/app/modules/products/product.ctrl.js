@@ -48,7 +48,7 @@ app.controller('productInfoCtrl', ['$scope', '$rootScope', function ($scope, $ro
       console.log('productInfoCtrl');
 }]);
 
-app.controller('productCreateEditCtrl', ['$scope', '$rootScope','httpMethodService','apiUrl', function ($scope, $rootScope,httpMethodService,apiUrl) {
+app.controller('productCreateEditCtrl', ['$scope', '$rootScope','httpMethodService','apiUrl','$location', function ($scope, $rootScope,httpMethodService,apiUrl,$location) {
     $scope.product = {};
 
     var formData = new FormData();
