@@ -11,7 +11,6 @@ app.factory('httpMethodService', ['$http', '$rootScope', '$q', '$location', 'use
          */
 
         var httpMethodCallforRowData = function (method, url, params, header) {
-            var token = userService.getDataFromLocalStorage('x-access-token');
             var httpData = $http({
                 method: method,
                 url: url,
@@ -20,7 +19,6 @@ app.factory('httpMethodService', ['$http', '$rootScope', '$q', '$location', 'use
 //                'processData': false,
                 headers: {
                     'Content-Type': 'application/json',
-                    'x-access-token': token
                 }
             });
             httpData.success(function (response, status, headers) {
@@ -32,30 +30,8 @@ app.factory('httpMethodService', ['$http', '$rootScope', '$q', '$location', 'use
             });
             return httpData;
         };
-        var httpMethodCallforCustomHeader = function (method, url, params, cb, header) {
-            var httpData = $http({
-                method: method,
-                url: url,
-                dataType: 'json',
-                'data': JSON.stringify(params),
-                'processData': false,
-                headers: header
-            });
-            httpData.success(function (response, status, headers) {
-                if (status == 401) {
-                    userService.removeAllLocalStorage();
-                    $location.path("/login");
-                }
-                //cb(response);
-            });
-            httpData.error(function (response, status, headers) {
-                //cb(response);
-            });
-            return httpData
-        };
-
+        
         var httpFile = function (method, url, params, header) {
-            var token = userService.getDataFromLocalStorage('x-access-token');
             var httpData = $http({
                 method: method,
                 url: url,
@@ -63,7 +39,7 @@ app.factory('httpMethodService', ['$http', '$rootScope', '$q', '$location', 'use
                 processData: false,
                 contentType: false,
                 data: params, //forms user object
-                headers: {'Content-Type': undefined, 'x-access-token': token}
+                headers: {'Content-Type': undefined}
             });
             
             return httpData;
@@ -71,7 +47,6 @@ app.factory('httpMethodService', ['$http', '$rootScope', '$q', '$location', 'use
 
         return httpMethodFactory = {
             httpMethodCallforRowData: httpMethodCallforRowData,
-            httpMethodCallforCustomHeader: httpMethodCallforCustomHeader,
             httpFile: httpFile
         };
 

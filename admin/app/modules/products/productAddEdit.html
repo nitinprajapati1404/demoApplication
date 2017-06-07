@@ -1,48 +1,67 @@
 <div class="col-md-12">
     <div class="box box-primary">
-    create product or edit
-        <!--    <div class="box-header with-border">
-                <h3 class="box-title">City</h3>
-            </div>-->
+            <div class="box-header with-border">
+                <h3 class="box-title">Product</h3>
+            </div>
         <!-- /.box-header -->
         <!-- form start -->
-<!--         <form class="form-horizontal" name="cityFrm">
+        <form class="form-horizontal" name="productFrm">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="country" class="col-sm-2 control-label">Country name</label>
+                    <label for="productName" class="col-sm-2 control-label">Product name</label>
 
-                    <div class="col-sm-6" ng-class="{ 'has-error' : cityFrm.country.$invalid && cityFrm.country.$touched }">
-                        <select class="form-control" ng-change="changeCountry()" id="country" ng-model="city.country" ng-options="x.name for x in countryList track by x._id" name="country" required>
-                            <option value="" selected="selected">Select Country</option>
-                        </select>
-                        <div ng-messages="cityFrm.country.$error" ng-if="cityFrm.country.$touched">
-                            <p class="help-block" ng-message="required">Country is required.</p>
+                    <div class="col-sm-6" ng-class="{ 'has-error' : productFrm.productName.$invalid && productFrm.productName.$touched }">
+                       <input  class="form-control" type="text" name="productName" ng-model="product.productName" required/>
+                        <div ng-messages="productFrm.productName.$error" ng-if="productFrm.productName.$touched">
+                            <p class="help-block" ng-message="required">productName is required.</p>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="state" class="col-sm-2 control-label">State name</label>
+                    <label for="productShortDesc" class="col-sm-2 control-label">Product Short Desc</label>
 
-                    <div class="col-sm-6" ng-class="{ 'has-error' : cityFrm.state.$invalid && cityFrm.state.$touched }">
-                        <select class="form-control" id="state" name="state" ng-model="city.state" ng-options="x.name for x in stateList track by x._id" required>
-                            <option value="" selected="selected">Select state</option>
-                        </select>
-                        <div ng-messages="cityFrm.state.$error" ng-if="cityFrm.state.$touched">
-                            <p class="help-block" ng-message="required">State is required.</p>
+                    <div class="col-sm-6" ng-class="{ 'has-error' : productFrm.productShortDesc.$invalid && productFrm.productShortDesc.$touched }">
+                       <input  class="form-control" type="text" name="productShortDesc" ng-model="product.productShortDesc" required/>
+                        <div ng-messages="productFrm.productShortDesc.$error" ng-if="productFrm.productShortDesc.$touched">
+                            <p class="help-block" ng-message="required">productShortDesc is required.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">City name</label>
+                    <label for="productDesc" class="col-sm-2 control-label">Product Desc</label>
 
-                    <div class="col-sm-6" ng-class="{ 'has-error' : cityFrm.name.$invalid && cityFrm.name.$touched }">
-                        <input type="text" ng-model="city.name" class="form-control" name="name" id="name" placeholder="e.g. Mumbai" required>
-                        <div ng-messages="cityFrm.name.$error" ng-if="cityFrm.name.$touched">
-                            <p class="help-block" ng-message="required">City is required.</p>
+                    <div class="col-sm-6" ng-class="{ 'has-error' : productFrm.productDesc.$invalid && productFrm.productDesc.$touched }">
+                       <input  class="form-control" type="text" name="productDesc" ng-model="product.productDesc" required/>
+                        <div ng-messages="productFrm.productDesc.$error" ng-if="productFrm.productDesc.$touched">
+                            <p class="help-block" ng-message="required">productDesc is required.</p>
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="productThumbImage" class="col-sm-2 control-label">product Thumb Image</label>
+
+                    <div class="col-sm-6">
+                       <input  class="form-control" type="file" name="productThumbImage" ng-model="product.productThumbImage" onchange="angular.element(this).scope().setFiles(this,'productThumbImage')" required/>
+                       
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productHomePageImage" class="col-sm-2 control-label">product Home Page Image</label>
+
+                    <div class="col-sm-6">
+                       <input  class="form-control" type="file" name="productHomePageImage" ng-model="product.productHomePageImage" onchange="angular.element(this).scope().setFiles(this,'productHomePageImage')" required/>
+                       
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productCatelog" class="col-sm-2 control-label">product Catlog</label>
+
+                    <div class="col-sm-6">
+                       <input  class="form-control" type="file" name="productCatelog" ng-model="product.productCatelog" onchange="angular.element(this).scope().setFiles(this,'productCatelog')" required/>
+                       
+                    </div>
+                </div>
+                 
 
             </div>
             <!-- /.box-body -->
@@ -50,13 +69,13 @@
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-2">
 
-                        <button ng-if="isUpdateMode" ng-click="updateCity()" class="btn btn-primary">Save</button>
-                        <button ng-if="!isUpdateMode" ng-click="saveCity()" class="btn btn-primary">Save</button>
-                        <a href="#city" class="btn btn-default">Cancel</a>
+                        <button ng-if="isUpdateMode" ng-click="updateProudct()" class="btn btn-primary">Save</button>
+                        <button ng-if="!isUpdateMode" ng-click="addProudct(product)" class="btn btn-primary">Save</button>
+                        <a href="#/products" class="btn btn-default">Cancel</a>
                     </div>
                 </div>
             </div>
             <!-- /.box-footer -->
-        </form> -->
+        </form>
     </div>
 </div>
