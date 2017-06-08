@@ -124,7 +124,7 @@ module.exports = {
                     req.body['productThumbImageRandom'] = pictureName[1];
                 });
                 _.each(files.productHomePageImage, function (profilePic) {
-                    var imageName = helper.uplaodFile(profilePic, 'content/catlog');
+                    var imageName = helper.uplaodFile(profilePic, 'content/product');
                     req.body['productHomePageImage'] = imageName[0];
                     req.body['productHomePageImageRandom'] = imageName[1];
                 });
