@@ -31,6 +31,9 @@
                         <td>{{product.productCatelog}}</td>
                         <td class="text-center">
                             <a href="#product/{{product.productId}}" class="btn btn-primary btn-xs">
+                                <i class="fa fa-fw fa-eye"></i>
+                            </a>
+                            <a href="#product/edit/{{product.productId}}" class="btn btn-primary btn-xs">
                                 <i class="fa fa-fw fa-pencil-square-o"></i>
                             </a>
                             <a href="javascript:void(0);" message="Are you sure you want to delete ?" ng-confirm="deleteProduct(product)"  class="btn btn-danger btn-xs">

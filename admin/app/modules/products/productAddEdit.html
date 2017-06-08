@@ -41,24 +41,24 @@
                     <label for="productThumbImage" class="col-sm-2 control-label">product Thumb Image</label>
 
                     <div class="col-sm-6">
-                       <input  class="form-control" type="file" name="productThumbImage" ng-model="product.productThumbImage" onchange="angular.element(this).scope().setFiles(this,'productThumbImage')" required/>
-                       
+                       <input  class="form-control" type="file" name="productThumbImage" ng-model="product.productThumbImage" onchange="angular.element(this).scope().setFiles(this,'productThumbImage')"/>
+                       <span ng-if="product.productId" ng-bind="product.productThumbImage"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="productHomePageImage" class="col-sm-2 control-label">product Home Page Image</label>
 
                     <div class="col-sm-6">
-                       <input  class="form-control" type="file" name="productHomePageImage" ng-model="product.productHomePageImage" onchange="angular.element(this).scope().setFiles(this,'productHomePageImage')" required/>
-                       
+                       <input  class="form-control" type="file" name="productHomePageImage" ng-model="product.productHomePageImage" onchange="angular.element(this).scope().setFiles(this,'productHomePageImage')"/>
+                       <span ng-if="product.productId" ng-bind="product.productHomePageImage"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="productCatelog" class="col-sm-2 control-label">product Catlog</label>
 
                     <div class="col-sm-6">
-                       <input  class="form-control" type="file" name="productCatelog" ng-model="product.productCatelog" onchange="angular.element(this).scope().setFiles(this,'productCatelog')" required/>
-                       
+                       <input  class="form-control" type="file" name="productCatelog" ng-model="product.productCatelog" onchange="angular.element(this).scope().setFiles(this,'productCatelog')"/>
+                       <span ng-if="product.productId" ng-bind="product.productCatelog"></span>
                     </div>
                 </div>
                  
@@ -69,8 +69,8 @@
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-2">
 
-                        <button ng-if="isUpdateMode" ng-click="updateProudct()" class="btn btn-primary">Save</button>
-                        <button ng-if="!isUpdateMode" ng-click="addProudct(product)" class="btn btn-primary">Save</button>
+                        <button ng-if="product.productId" ng-click="updateProudct(product)" class="btn btn-primary">Update</button>
+                        <button ng-if="!product.productId" ng-click="addProudct(product)" class="btn btn-primary">Save</button>
                         <a href="#/products" class="btn btn-default">Cancel</a>
                     </div>
                 </div>

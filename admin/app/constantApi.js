@@ -1,3 +1,4 @@
 app.constant("constantApi",{
-	"product":"product"
+	"product":"product",
+	"addImagesOfProduct":"addImagesOfProduct"
 });

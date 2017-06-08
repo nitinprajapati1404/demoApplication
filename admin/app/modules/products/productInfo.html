@@ -1,1 +1,78 @@
-i
+<div class="col-md-12">
+    <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Product</h3>
+            </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" name="productGalleryForm">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="productName" class="col-sm-2 control-label">Product name</label>
+
+                    <div class="col-sm-6">
+                       <span ng-bind="product.productName"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productShortDesc" class="col-sm-2 control-label">Product Short Desc</label>  
+                    <div class="col-sm-6">
+                       <span ng-bind="product.productShortDesc"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productDesc" class="col-sm-2 control-label">Product Desc</label>
+
+                    <div class="col-sm-6">
+                       <span ng-bind="product.productDesc"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productThumbImage" class="col-sm-2 control-label">product Thumb Image</label>
+
+                    <div class="col-sm-6">
+                       <span ng-bind="product.productThumbImage"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productHomePageImage" class="col-sm-2 control-label">product Home Page Image</label>
+
+                    <div class="col-sm-6">
+                       <span ng-bind="product.productHomePageImage"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productCatelog" class="col-sm-2 control-label">product Catlog</label>
+
+                    <div class="col-sm-6"> 
+                       <span ng-bind="product.productCatelog"></span>
+                    </div>
+                </div>
+                 
+
+            </div>
+            <!-- /.box-body -->
+           
+
+           		<div class="form-group">
+                    <label for="image" class="col-sm-2 control-label">product Image</label>
+
+                    <div class="col-sm-6">
+                       <input  class="form-control" type="file" name="image" ng-model="image" onchange="angular.element(this).scope().setFiles(this,'image')" multiple="true" />
+                       <span ng-repeat="gallery in productGallary">
+                           {{gallery.name}}<br/>
+                       </span>
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-2">
+
+                        <button ng-if="product.productId" ng-click="addProductGallery()" class="btn btn-primary">Add Gallary </button> 
+                    </div>
+                </div>
+            </div>
+        	</form>
+    </div>
+</div>
