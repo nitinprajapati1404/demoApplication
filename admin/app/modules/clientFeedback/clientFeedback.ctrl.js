@@ -22,13 +22,32 @@ app.config(['$routeProvider', function ($routeProvider) {
                     auth: true
                 })
     }]);
-app.controller('feedbackListCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-      console.log('feedbackListCtrl');
+app.controller('feedbackListCtrl', ['$scope', '$rootScope','httpMethodService','apiUrl', function ($scope, $rootScope,httpMethodService,apiUrl) {
+      $scope.feedbackList = [];
+       httpMethodService.httpMethodCallforRowData("GET",apiUrl.getApiUrl('clientFeedback'),{}).success(function(response){
+        if(response.success){
+            $scope.feedbackList = response.feedbacks;
+            // $scope.productList = response.products;
+        }
+      });
 }]);
 
-app.controller('feedbackInfoCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-      console.log('feedbackInfoCtrl');
+app.controller('feedbackInfoCtrl', ['$scope', '$rootScope','$routeParams','httpMethodService','apiUrl', function ($scope, $rootScope,$routeParams,httpMethodService,apiUrl) {
+      $scope.feedbackInfo = {};
+      console.log("test")
+      var getIndividualFeedback = apiUrl.getApiUrl('clientFeedback') +"/" +$routeParams.param; 
+       httpMethodService.httpMethodCallforRowData("GET",getIndividualFeedback,{}).success(function(response){
+        if(response.success){
+            $scope.feedbackInfo = response.feedback;
+        }
+      });
 }]);
-app.controller('feedbackCreateEditCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-      console.log('feedbackCreateEditCtrl');
+app.controller('feedbackCreateEditCtrl',['$scope', '$rootScope','$routeParams','httpMethodService','apiUrl', function ($scope, $rootScope,$routeParams,httpMethodService,apiUrl) {
+      $scope.feedbackInfo = {};
+      var getIndividualFeedback = apiUrl.getApiUrl('clientFeedback') +"/" +$routeParams.id; 
+       httpMethodService.httpMethodCallforRowData("GET",getIndividualFeedback,{}).success(function(response){
+        if(response.success){
+            $scope.feedbackInfo = response.feedback;
+        }
+      });
 }]);
