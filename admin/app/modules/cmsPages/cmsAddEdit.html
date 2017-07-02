@@ -1,1 +1,62 @@
-create or edit contactUs
+<div class="col-md-12">
+    <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">CMS Page Info</h3>
+            </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="cmsName" class="col-sm-2 control-label">cms Name</label>
+
+                    <div class="col-sm-6">
+                        <input  class="form-control" type="text" name="cmsName" ng-model="pageInfo.cmsName" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cmsDisplayName" class="col-sm-2 control-label">cms Display Name</label>  
+                    <div class="col-sm-6">
+                      <input  class="form-control" type="text" name="cmsDisplayName" ng-model="pageInfo.cmsDisplayName" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cmsShortDesc" class="col-sm-2 control-label">cms Short Desc</label>
+
+                    <div class="col-sm-6">
+                       <input  class="form-control" type="text" name="cmsShortDesc" ng-model="pageInfo.cmsShortDesc" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cmsLongDesc" class="col-sm-2 control-label">cms Long Desc</label>
+
+                    <div class="col-sm-6">
+                       <input  class="form-control" type="text" name="cmsLongDesc" ng-model="pageInfo.cmsLongDesc" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cmspagebanner" class="col-sm-2 control-label">cms Page Banner</label>
+ 
+                    <div class="col-sm-6">
+                      <input  class="form-control" type="file" name="cmspagebanner" ng-model="pageInfo.cmspagebanner" onchange="angular.element(this).scope().setFiles(this,'cmspagebanner')"/>
+                       
+                    </div>
+                </div> 
+                 
+
+            </div>
+            <!-- /.box-body --> 
+
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-2">
+
+                        <button ng-if="pageInfo.cmsId" ng-click="updateCmsPage(pageInfo)" class="btn btn-primary">Update</button>
+                        <button ng-if="!pageInfo.cmsId" ng-click="addCmsPage(pageInfo)" class="btn btn-primary">Save</button>
+                        <a href="#/cmsPages" class="btn btn-default">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        	</form>
+    </div>
+</div>

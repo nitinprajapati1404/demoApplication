@@ -3,4 +3,8 @@ app.constant("constantApi",{
 	"addImagesOfProduct":"addImagesOfProduct",
 	"address":"address",
 	"clientFeedback":"clientFeedback",
+	"removeIndiImage":"removeIndiImage/",
+	"contactUs":"contactUs",
+	"newsLater":"newsLater",
+	"cms":"cms",
 });

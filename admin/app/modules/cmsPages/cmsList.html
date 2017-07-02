@@ -1,1 +1,54 @@
-contactUs list page
+<div class="col-md-12">
+    <div class="box box-primary">
+        <div class="box-body">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <!-- <th ng-click="orderByField = 'name'; reverseSort = !reverseSort">Product Name
+                            <sort-arrow order-by-field='orderByField' name='name' reverse-sort='reverseSort' ></sort-arrow>
+                        </th> -->
+                        <th>cmsName</th>
+                        <th>cmsDisplayName</th>
+                        <th>cmsShortDesc</th>
+                        <th>cmsLongDesc</th>
+                        <!-- <th>product Home</th>
+                        <th class="action-Width text-center">Action</th> -->
+                    </tr>
+                    <tr>
+                        <th>
+                            <input ng-model="search.cmsName" placeholder="search for city name" class="input-sm form-control" type="search"/>
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cms in cmsList| filter:search as result track by $index ">
+                        <td>{{cms.cmsName}}</td>
+                        <td>{{cms.cmsDisplayName}}</td>
+                        <td>{{cms.cmsShortDesc}}</td>
+                        <td>{{cms.cmsLongDesc}}</td>
+                        <td class="text-center">
+                            <a href="#cmsPage/{{cms.cmsId}}" class="btn btn-primary btn-xs">
+                                <i class="fa fa-fw fa-eye"></i>
+                            </a>
+                            <a href="#cmsPage/edit/{{cms.cmsId}}" class="btn btn-primary btn-xs">
+                                <i class="fa fa-fw fa-pencil-square-o"></i>
+                            </a>
+                            <!-- <a href="javascript:void(0);" message="Are you sure you want to delete ?" ng-confirm="deletecms(cms)"  class="btn btn-danger btn-xs">
+                                <i class="fa fa-fw fa-close"></i>
+                            </a> -->
+                        </td>
+                    </tr>
+                    <tr ng-if="!result.length">
+                        <td>Data Not Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

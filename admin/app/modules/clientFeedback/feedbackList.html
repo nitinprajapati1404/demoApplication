@@ -1,1 +1,48 @@
-feedback list showing
+<div class="col-md-12">
+    <div class="box box-primary">
+        <div class="box-body">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                         
+                        <th>client Name</th>
+                        <th>client Position</th>
+                        <th>client Feedback</th> 
+                    </tr>
+                    <tr>
+                        <th>
+                            <input ng-model="search.clientName" placeholder="search for name" class="input-sm form-control" type="search"/>
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="client in feedbackList| filter:search as result track by $index ">
+                        <td>{{client.clientName}}</td> 
+                        <td>{{client.clientPosition}}</td> 
+                        <td>{{client.clientFeedback}}</td> 
+                        <td class="text-center">
+                            <a href="#/clientFeedback/{{client.clientId}}" class="btn btn-primary btn-xs">
+                                <i class="fa fa-fw fa-eye"></i>
+                            </a>
+                            <a href="#/clientFeedback/edit/{{client.clientId}}" class="btn btn-primary btn-xs">
+                                <i class="fa fa-fw fa-pencil-square-o"></i>
+                            </a>
+                            <a href="javascript:void(0);" message="Are you sure you want to delete ?" ng-confirm="deleteClient(client)"  class="btn btn-danger btn-xs">
+                                <i class="fa fa-fw fa-close"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr ng-if="!result.length">
+                        <td>Data Not Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

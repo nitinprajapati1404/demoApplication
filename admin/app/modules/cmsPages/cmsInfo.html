@@ -1,1 +1,51 @@
-contactUs information
+<div class="col-md-12">
+    <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">CMS Page Info</h3>
+            </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="cmsName" class="col-sm-2 control-label">cms Name</label>
+
+                    <div class="col-sm-6">
+                       <span ng-bind="pageInfo.cmsName"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cmsDisplayName" class="col-sm-2 control-label">cms Display Name</label>  
+                    <div class="col-sm-6">
+                       <span ng-bind="pageInfo.cmsDisplayName"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cmsShortDesc" class="col-sm-2 control-label">cms Short Desc</label>
+
+                    <div class="col-sm-6">
+                       <span ng-bind="pageInfo.cmsShortDesc"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cmsLongDesc" class="col-sm-2 control-label">cms Long Desc</label>
+
+                    <div class="col-sm-6">
+                       <span ng-bind="pageInfo.cmsLongDesc"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cmspagebannerRandom" class="col-sm-2 control-label">cms Page Banner</label>
+ 
+                    <div class="col-sm-6">
+                       <img ng-src="{{pageInfo.cmspagebannerRandom}}" height="200" width="200"/>
+                       
+                    </div>
+                </div> 
+                 
+
+            </div>
+            <!-- /.box-body --> 
+        	</form>
+    </div>
+</div>

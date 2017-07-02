@@ -7,7 +7,7 @@ app.config(['$routeProvider', function ($routeProvider) {
                     addLink: false,
                     auth: true
                 })
-                .when("/contactUs/:param", {
+                .when("/contactUs/:id", {
                     templateUrl: "app/modules/contactUs/contactUsInfo.html",
                     controller: "contactUsInfoCtrl",
                     pagename: "contactUs Detail",
@@ -22,12 +22,22 @@ app.config(['$routeProvider', function ($routeProvider) {
                     auth: true
                 })
     }]);
-app.controller('contactUsCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-      console.log('contactUsCtrl');
+app.controller('contactUsCtrl', ['$scope', '$rootScope','httpMethodService','apiUrl', function ($scope, $rootScope,httpMethodService,apiUrl) {
+    $scope.contactUsList = []; 
+    httpMethodService.httpMethodCallforRowData("GET",apiUrl.getApiUrl('contactUs'),{}).success(function(response){
+        if(response.success){
+            $scope.contactUsList = response.allContacts;
+        }
+      }); 
 }]);
 
-app.controller('contactUsInfoCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-      console.log('contactUsInfoCtrl');
+app.controller('contactUsInfoCtrl', ['$scope', '$rootScope','httpMethodService','apiUrl','$routeParams', function ($scope, $rootScope,httpMethodService,apiUrl,$routeParams) {
+    $scope.contact = {};
+    httpMethodService.httpMethodCallforRowData("GET",apiUrl.getApiUrl('contactUs')+"/"+$routeParams.id,{}).success(function(response){
+        if(response.success){
+            $scope.contact = response.contact;
+        }
+    }); 
 }]);
 
 app.controller('contactUsCreateEditCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {

@@ -24,7 +24,7 @@ app.directive("sidebar", ['$location', 'userService', 'constant', function ($loc
                     },{
                         title:"ContactUs Management",
                         iconClass:"fa fa-comments",
-                        link:"#/ContactUs"
+                        link:"#/contactUs"
                     },
                     {
                         title: "NewsLater subscribers",

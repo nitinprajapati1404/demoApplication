@@ -1,1 +1,50 @@
-cms list page
+<div class="col-md-12">
+    <div class="box box-primary">
+        <div class="box-body">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <!-- <th ng-click="orderByField = 'name'; reverseSort = !reverseSort">Product Name
+                            <sort-arrow order-by-field='orderByField' name='name' reverse-sort='reverseSort' ></sort-arrow>
+                        </th> -->
+                        <th>contactName</th>
+                        <th>ConatctLastName</th>
+                        <th>contactEmailId</th>
+                        <th>contactPhone</th>
+                        <th>InquiryProductName</th>
+                        <!-- <th>product Home</th>
+                        <th class="action-Width text-center">Action</th> -->
+                    </tr>
+                    <tr>
+                        <th>
+                            <input ng-model="search.contactName" placeholder="search for name" class="input-sm form-control" type="search"/>
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="contact in contactUsList| filter:search as result track by $index ">
+                        <td>{{contact.contactName}}</td>
+                        <td>{{contact.ConatctLastName}}</td>
+                        <td>{{contact.contactEmailId}}</td>
+                        <td>{{contact.contactPhone}}</td>
+                        <td>{{contact.InquiryProductName}}</td> 
+                        <td class="text-center">
+                            <a href="#/contactUs/{{contact.contactId}}" class="btn btn-primary btn-xs">
+                                <i class="fa fa-fw fa-eye"></i>
+                            </a> 
+                        </td>
+                    </tr>
+                    <tr ng-if="!result.length">
+                        <td>Data Not Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

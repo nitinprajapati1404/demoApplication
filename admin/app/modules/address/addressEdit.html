@@ -9,47 +9,56 @@
                     <label for="addressDesc" class="col-sm-2 control-label">Address Desc</label>
 
                     <div class="col-sm-6">
-                       <span ng-bind="address.addressDesc"></span>
+                       <!-- <span ng-bind="address.addressDesc"></span> -->
+                        <input  class="form-control" type="text" name="addressDesc" ng-model="address.addressDesc" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="cityName" class="col-sm-2 control-label">city Name</label>  
                     <div class="col-sm-6">
-                        <span ng-bind="address.cityName"></span>
+                        <input  class="form-control" type="text" name="cityName" ng-model="address.cityName" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="countryName" class="col-sm-2 control-label">country Name</label>
 
-                    <div class="col-sm-6">
-                        <span ng-bind="address.countryName"></span>
+                    <div class="col-sm-6"> 
+                        <input  class="form-control" type="text" name="countryName" ng-model="address.countryName" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="pincode" class="col-sm-2 control-label">pincode</label>
 
                     <div class="col-sm-6">
-                        <span ng-bind="address.pincode"></span>
+                        <input  class="form-control" type="text" name="pincode" ng-model="address.pincode" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phoneNumber" class="col-sm-2 control-label">phone Number</label>
 
-                    <div class="col-sm-6">
-                        <span ng-bind="address.phoneNumber"></span>
+                    <div class="col-sm-6"> 
+                        <input  class="form-control" type="text" name="phoneNumber" ng-model="address.phoneNumber" required/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="alternetPhoneNumber" class="col-sm-2 control-label">Alternet Phone Number</label>
-
+                    <label for="alternetPhoneNumber" class="col-sm-2 control-label">Alternet Phone Number</label> 
                     <div class="col-sm-6"> 
-                        <span ng-bind="address.alternetPhoneNumber"></span>
+                        <input  class="form-control" type="text" name="alternetPhoneNumber" ng-model="address.alternetPhoneNumber" required/>
                     </div>
                 </div>
                  
 
             </div>
             <!-- /.box-body -->
+             <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-2">
+
+                        <button ng-click="updateAddress()" class="btn btn-primary">Update</button>
+                        
+                    </div>
+                </div>
+            </div>
            
         	</form>
     </div>

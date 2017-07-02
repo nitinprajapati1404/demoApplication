@@ -9,12 +9,20 @@ app.config(['$routeProvider', function ($routeProvider) {
     }]);
 app.controller('addressCtrl', ['$scope', '$rootScope','httpMethodService','apiUrl', function ($scope, $rootScope,httpMethodService,apiUrl) {
       
-      $scope.address = {};
-       httpMethodService.httpMethodCallforRowData("GET",apiUrl.getApiUrl('address'),{}).success(function(response){
+    $scope.address = {};
+    httpMethodService.httpMethodCallforRowData("GET",apiUrl.getApiUrl('address'),{}).success(function(response){
         if(response.success){
         	$scope.address = response.myaddress[0];
             // $scope.productList = response.products;
         }
-      });
+    });
+
+    $scope.updateAddress = function(){ 
+        httpMethodService.httpMethodCallforRowData("PUT",apiUrl.getApiUrl('address')+"/"+$scope.address.addressId,$scope.address).success(function(response){
+            if(response.success){ 
+                // $scope.productList = response.products;
+            }
+        });
+    }
 
 }]);

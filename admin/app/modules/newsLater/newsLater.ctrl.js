@@ -7,6 +7,11 @@ app.config(['$routeProvider', function ($routeProvider) {
                     auth: true
                 })
     }]);
-app.controller('newsLaterCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-      console.log('newsLaterCtrl');
+app.controller('newsLaterCtrl', ['$scope', '$rootScope','httpMethodService','apiUrl', function ($scope, $rootScope,httpMethodService,apiUrl) {
+	$scope.newslaters = [];
+    httpMethodService.httpFile("GET",apiUrl.getApiUrl('newsLater'),{}).success(function(response){
+        if(response.success){
+            $scope.newslaters = response.newslaters;
+        }
+    });
 }]);

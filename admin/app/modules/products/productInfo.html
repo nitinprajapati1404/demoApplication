@@ -52,6 +52,17 @@
 
             </div>
             <!-- /.box-body -->
+
+
+                <div class="form-group" ng-if="(product.productImages).length > 0"> 
+
+                    <div class="col-sm-4" ng-repeat="pimage in product.productImages">
+                        <img ng-src="{{pimage.imageRandom}}" height="200" width="200"/>
+                        <span>{{pimage.image}}</span>
+                        <span ng-click="removeGalleryImage(pimage)">Remove</span>
+                        
+                    </div>
+                </div>
            
 
            		<div class="form-group">

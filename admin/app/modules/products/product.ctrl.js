@@ -64,6 +64,17 @@ app.controller('productInfoCtrl', ['$scope', '$rootScope','$routeParams','apiUrl
 
         httpMethodService.httpFile("POST",apiUrl.getApiUrl('addImagesOfProduct'),formData).success(function(response){
             if(response.success){
+                // $scope.product.productImages
+                    // $location.path("/products");
+            }
+        });
+    }
+
+    $scope.removeGalleryImage = function(pimag){   
+        httpMethodService.httpMethodCallforRowData("DELETE",apiUrl.getApiUrl('removeIndiImage')+pimag.productImageId).success(function(response){
+            if(response.success){
+                var idx = ($scope.product.productImages).indexOf(pimag);
+                $scope.product.productImages.splice(idx, 1);
                     // $location.path("/products");
             }
         });
@@ -88,6 +99,7 @@ app.controller('productCreateEditCtrl', ['$scope', '$rootScope','httpMethodServi
         httpMethodService.httpFile("GET",getProductInfoUrl,{}).success(function(response){
             if(response.success){
                 $scope.product = response.product;
+                console.log($scope.product.productImages)
             }
         });
     }

@@ -100,11 +100,11 @@ module.exports = {
         });
     },
     getAllNewsLatters: function (req, res) {
-        models.newslatter.findAll().then(function (goals) {
+        models.newslatter.findAll().then(function (newslaters) {
             return res.json({
                 success: true,
                 message: "News Latters List.",
-                goals: goals
+                newslaters: newslaters
             });
         }).catch(Sequelize.ValidationError, function (err) {
             return res.status(422).send(err.errors);

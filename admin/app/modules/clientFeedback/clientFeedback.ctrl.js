@@ -4,7 +4,7 @@ app.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: "app/modules/clientFeedback/feedbackList.html",
                     controller: "feedbackListCtrl",
                     pagename: "Client Feedback List",
-                    addLink: false,
+                    addLink: "#/clientFeedback/add/new",
                     auth: true
                 })
                 .when("/clientFeedback/:param", {
@@ -33,21 +33,54 @@ app.controller('feedbackListCtrl', ['$scope', '$rootScope','httpMethodService','
 }]);
 
 app.controller('feedbackInfoCtrl', ['$scope', '$rootScope','$routeParams','httpMethodService','apiUrl', function ($scope, $rootScope,$routeParams,httpMethodService,apiUrl) {
-      $scope.feedbackInfo = {};
-      console.log("test")
+      $scope.clientFeedbackDetail = {};
       var getIndividualFeedback = apiUrl.getApiUrl('clientFeedback') +"/" +$routeParams.param; 
        httpMethodService.httpMethodCallforRowData("GET",getIndividualFeedback,{}).success(function(response){
         if(response.success){
-            $scope.feedbackInfo = response.feedback;
+            $scope.clientFeedbackDetail = response.feedback;
         }
       });
 }]);
-app.controller('feedbackCreateEditCtrl',['$scope', '$rootScope','$routeParams','httpMethodService','apiUrl', function ($scope, $rootScope,$routeParams,httpMethodService,apiUrl) {
-      $scope.feedbackInfo = {};
-      var getIndividualFeedback = apiUrl.getApiUrl('clientFeedback') +"/" +$routeParams.id; 
-       httpMethodService.httpMethodCallforRowData("GET",getIndividualFeedback,{}).success(function(response){
+app.controller('feedbackCreateEditCtrl',['$scope', '$rootScope','$routeParams','httpMethodService','apiUrl','$location', function ($scope, $rootScope,$routeParams,httpMethodService,apiUrl,$location) {
+    $scope.clientFeedbackDetail = {};
+    var formData = new FormData();
+    var getIndividualFeedback = apiUrl.getApiUrl('clientFeedback') +"/" +$routeParams.id; 
+    httpMethodService.httpMethodCallforRowData("GET",getIndividualFeedback,{}).success(function(response){
         if(response.success){
-            $scope.feedbackInfo = response.feedback;
+            $scope.clientFeedbackDetail = response.feedback;
         }
-      });
+    });
+    
+    $scope.addFeedback = function(feedback){
+        angular.forEach(feedback, function (value, key) {
+                formData.append(key, value);
+        })
+
+        httpMethodService.httpFile("POST",apiUrl.getApiUrl('clientFeedback'),formData).success(function(response){
+            if(response.success){
+                 $location.path("/clientFeedbacks"); 
+            }
+        });
+    }
+
+    $scope.updateClientFeedback = function(feedback){
+        delete feedback.clientImageRandom;
+        angular.forEach(feedback, function (value, key) {
+                formData.append(key, value);
+        })
+        httpMethodService.httpFile("PUT",getIndividualFeedback,formData).success(function(response){
+            if(response.success){
+                 $location.path("/clientFeedbacks"); 
+            }
+        });
+
+    }
+
+    $scope.setFiles = function (element,objkey) {
+        $scope.$apply(function (scope) { 
+            angular.forEach(element.files, function (value, key) { 
+                formData.append(objkey, value); 
+            }) 
+        });
+    };
 }]);
