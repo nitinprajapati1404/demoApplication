@@ -27,10 +27,16 @@ app.directive("sidebar", ['$location', 'userService', 'constant', function ($loc
                         link:"#/contactUs"
                     },
                     {
+                        title: "Goals and Why Us",
+                        iconClass: "fa fa-flag",
+                        link: "#/goals"
+                    },
+                    {
                         title: "NewsLater subscribers",
                         iconClass: "fa fa-flag",
                         link: "#/newsLaterSubscribers"
-                    }];
+                    },
+                    ];
 
 
             }

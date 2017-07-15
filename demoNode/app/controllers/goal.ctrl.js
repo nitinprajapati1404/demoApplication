@@ -57,6 +57,22 @@ module.exports = {
         });
 
     },
+    getGoalInfo: function (req, res) {
+        models.goals.findById(req.params.id).then(function (goal) {
+            return res.json({
+                success: true,
+                message: "get goal Info.",
+                goal: goal
+            });
+        }).catch(Sequelize.ValidationError, function (err) {
+            return res.status(422).send(err.errors);
+        }).catch(function (err) {
+            return res.status(400).send({
+                message: err.message
+            });
+        });
+
+    },
     //remove goal page
     removeGoal: function (req, res) {
         models.goals.destroy({where: {"goalId": req.params.id}}).then(function (goal) {

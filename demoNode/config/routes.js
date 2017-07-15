@@ -51,6 +51,7 @@ app.put('/address/:id', controllers.contactUsRouter.updateAddress);
 
 app.post('/goal', controllers.goalRouter.addgoal);
 app.get('/goal', controllers.goalRouter.getAllGoal);
+app.get('/goal/:id', controllers.goalRouter.getGoalInfo);
 app.put('/goal/:id', controllers.goalRouter.updateGoal);
 app.delete('/goal/:id', controllers.goalRouter.removeGoal);
 app.post('/newsLater', controllers.goalRouter.addNewsLatter);

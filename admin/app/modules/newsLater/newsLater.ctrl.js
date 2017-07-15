@@ -9,7 +9,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     }]);
 app.controller('newsLaterCtrl', ['$scope', '$rootScope','httpMethodService','apiUrl', function ($scope, $rootScope,httpMethodService,apiUrl) {
 	$scope.newslaters = [];
-    httpMethodService.httpFile("GET",apiUrl.getApiUrl('newsLater'),{}).success(function(response){
+    httpMethodService.httpMethodCallforRowData("GET",apiUrl.getApiUrl('newsLater'),{}).success(function(response){
         if(response.success){
             $scope.newslaters = response.newslaters;
         }

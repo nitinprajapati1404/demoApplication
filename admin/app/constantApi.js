@@ -7,4 +7,5 @@ app.constant("constantApi",{
 	"contactUs":"contactUs",
 	"newsLater":"newsLater",
 	"cms":"cms",
+	"goal":"goal",
 });

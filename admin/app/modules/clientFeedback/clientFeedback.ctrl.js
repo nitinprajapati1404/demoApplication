@@ -30,6 +30,18 @@ app.controller('feedbackListCtrl', ['$scope', '$rootScope','httpMethodService','
             // $scope.productList = response.products;
         }
       });
+
+       $scope.deleteClient = function(feedback){
+            var deletClientFeedbackUrl = apiUrl.getApiUrl('clientFeedback')+"/"+feedback.clientId;
+            httpMethodService.httpMethodCallforRowData("DELETE",deletClientFeedbackUrl,{}).success(function(response){
+                if(response.success){
+                    var idx = $scope.feedbackList.indexOf(feedback);
+                    if(idx != -1){
+                        $scope.feedbackList.splice(idx,1);
+                    }
+                }
+            });
+       }
 }]);
 
 app.controller('feedbackInfoCtrl', ['$scope', '$rootScope','$routeParams','httpMethodService','apiUrl', function ($scope, $rootScope,$routeParams,httpMethodService,apiUrl) {

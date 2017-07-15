@@ -1,0 +1,36 @@
+<div class="col-md-12">
+    <div class="box box-primary">
+        <div class="box-body">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                         
+                        <th>Title</th>
+                        <th>Desc</th>
+                        <th>isGoal</th> 
+                    </tr> 
+                </thead>
+                <tbody>
+                    <tr ng-repeat="goal in goals track by $index ">
+                        <td>{{goal.goalTitle}}</td> 
+                        <td>{{goal.goalDesc}}</td> 
+                        <td ng-if="goal.isGoal">Yes</td> 
+                        <td ng-if="!goal.isGoal">No</td> 
+                        <td class="text-center">
+                            
+                            <a href="#/goal/{{goal.goalId}}" class="btn btn-primary btn-xs">
+                                <i class="fa fa-fw fa-pencil-square-o"></i>
+                            </a>
+                            <a href="javascript:void(0);" message="Are you sure you want to delete ?" ng-confirm="deleteGoal(goal)"  class="btn btn-danger btn-xs">
+                                <i class="fa fa-fw fa-close"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr ng-if="!goals.length">
+                        <td>Data Not Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
