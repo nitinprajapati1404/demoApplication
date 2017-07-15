@@ -82,3 +82,5 @@ app.directive('tooltip', function () {
     };
 });
 
+app.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+

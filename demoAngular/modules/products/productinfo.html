@@ -16,7 +16,7 @@
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="company-intro m-b-30 text-justify">
                         <!--<h4>We Love What We Do</h4>-->
-                        <p>{{product.productDesc}}</p>
+                        <p ng-bind-html="product.productDesc | unsafe"></p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">

@@ -31,7 +31,8 @@
                     <label for="productDesc" class="col-sm-2 control-label">Product Desc</label>
 
                     <div class="col-sm-6" ng-class="{ 'has-error' : productFrm.productDesc.$invalid && productFrm.productDesc.$touched }">
-                       <input  class="form-control" type="text" name="productDesc" ng-model="product.productDesc" required/>
+                       <!-- <input  class="form-control" type="text" name="productDesc" ng-model="product.productDesc" required/> -->
+                       <trix-editor ng-if="true" angular-trix ng-model="product.productDesc" class="trix-content"></trix-editor>
                         <div ng-messages="productFrm.productDesc.$error" ng-if="productFrm.productDesc.$touched">
                             <p class="help-block" ng-message="required">productDesc is required.</p>
                         </div>

@@ -32,8 +32,7 @@
                     <span class="icon m-b-20"><a href="javascript:void(0)"><i class="fa fa-star-o" aria-hidden="true"></i></a></span>
                     <div class="content">
                         <h4><a href="javascript:void(0)">{{goal.goalTitle}}</a></h4>
-                        <p>{{goal.goalDesc}}
-                        </p>
+                        <p ng-bind-html="goal.goalDesc | unsafe"></p>
                     </div>
                 </div>
             </div>
@@ -44,7 +43,7 @@
     <div class="overlay">
         <div class="container">
             <h2>Who we are?</h2>
-            <p ng-bind="aboutUsCmsPage.cmsShortDesc"></p>
+            <p ng-bind-html="aboutUsCmsPage.cmsShortDesc | unsafe"></p>
             <a href="#/about-us" class="btn btn-md btn-inverse m-t-40">Read More</a>
         </div>
     </div>
@@ -60,8 +59,8 @@
                 <article class="post-entry">
                     <div class="article-img"><img ng-src="{{product.productThumbImageRandom}}" alt=""></div>
                     <h4 class="entry-title m-b-20"><a ng-href="#/product/{{product.productId}}">{{product.productName}}</a></h4>
-                    <p>{{product.productShortDesc}}
-                    </p>
+                     
+                    <p ng-bind-html="product.productShortDesc | unsafe"></p>
                     <a ng-href="#/product/{{product.productId}}" class="btn btn-sm btn-normal btn-border m-t-20">Read More</a>
                 </article>
             </div>

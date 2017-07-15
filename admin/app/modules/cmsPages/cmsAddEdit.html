@@ -24,14 +24,16 @@
                     <label for="cmsShortDesc" class="col-sm-2 control-label">cms Short Desc</label>
 
                     <div class="col-sm-6">
-                       <input  class="form-control" type="text" name="cmsShortDesc" ng-model="pageInfo.cmsShortDesc" required/>
+                       <!-- <input  class="form-control" type="text" name="cmsShortDesc" ng-model="pageInfo.cmsShortDesc" required/> -->
+                       <trix-editor ng-if="true" angular-trix ng-model="pageInfo.cmsShortDesc" class="trix-content"></trix-editor>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="cmsLongDesc" class="col-sm-2 control-label">cms Long Desc</label>
 
                     <div class="col-sm-6">
-                       <input  class="form-control" type="text" name="cmsLongDesc" ng-model="pageInfo.cmsLongDesc" required/>
+                       <!-- <input  class="form-control" type="text" name="cmsLongDesc" ng-model="pageInfo.cmsLongDesc" required/> -->
+                        <trix-editor ng-if="true" angular-trix ng-model="pageInfo.cmsLongDesc" class="trix-content"></trix-editor>
                     </div>
                 </div>
                 <div class="form-group">

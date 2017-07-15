@@ -16,7 +16,7 @@
                 <div class="col-md-12">
                     <div class="company-intro m-b-30">
                         <h4>We Love What We Do</h4>
-                        <p>{{aboutUsCmsPage.cmsLongDesc}}</p>
+                        <p ng-bind-html="aboutUsCmsPage.cmsLongDesc | unsafe"></p>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     <div class="col-xs-12 col-sm-4 col-md-4" ng-repeat="goal in allGoals track by $index" ng-if="goal.isGoal">
                         <div class="about-us-icon-box m-b-25">
                             <h4><span class="circle-icon"><i class="fa fa-star-o" aria-hidden="true"></i> </span>{{goal.goalTitle}}</h4>
-                            <p class="feature-desc">{{goal.goalDesc}}</p>
+                            <p class="feature-desc" ng-bind-html="goal.goalDesc | unsafe"></p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="testimonial item" ng-repeat="feedback in feedbacks track by $index">
                         <div class="testimonial-img"><img ng-src="{{feedback.productThumbImageRandom}}" class="img-responsive" alt=""></div>
                         <h4 class="testimonial-by">{{feedback.clientName}} - <span class="designation">{{feedback.clientPosition}}</span></h4>
-                        <p>{{feedback.clientFeedback}}</p>
+                        <p ng-bind-html="feedback.clientFeedback | unsafe"></p>
                     </div>
                 </div> 
             </div>

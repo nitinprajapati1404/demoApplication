@@ -23,4 +23,4 @@ app.controller('aboutUsCtrl', ['$scope', 'constant', 'httpMethodService','$timeo
             }
         });
 
-    }]);
+    }]); 

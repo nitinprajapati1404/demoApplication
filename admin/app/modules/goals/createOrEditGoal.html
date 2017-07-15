@@ -17,7 +17,8 @@
                 <div class="form-group">
                     <label for="goalDesc" class="col-sm-2 control-label">goal Desc</label>  
                     <div class="col-sm-6">
-                       <input  class="form-control" type="text" name="goalDesc" ng-model="goal.goalDesc" required/>
+                    <trix-editor ng-if="true" angular-trix ng-model="goal.goalDesc" class="trix-content"></trix-editor>
+                       <!-- <input  class="form-control" type="text" name="goalDesc" ng-model="goal.goalDesc" required/> -->
                     </div>
                 </div>
                 <div class="form-group">
