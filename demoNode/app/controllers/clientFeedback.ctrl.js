@@ -2,6 +2,7 @@ var bcrypt = require("bcrypt-nodejs");
 var _ = require('lodash');
 var multiparty = require('multiparty');
 var helper = require("../helpers/_helpers");
+var fs = require("fs");
 var allAttributesOfClient = [
     'clientId',
     'clientName',
@@ -10,6 +11,15 @@ var allAttributesOfClient = [
     'clientImage',
     [models.sequelize.fn('CONCAT', process.env.CONTENT_URL_CLIENT, models.sequelize.col('clientImageRandom')), 'productThumbImageRandom']
 ];
+
+var path = require('path');
+// find the first module to be loaded
+var topModule = module;
+
+while(topModule.parent)
+  topModule = topModule.parent;
+
+var appDir = path.dirname(topModule.filename);
 
 module.exports = {
     // add client feedback
@@ -77,62 +87,86 @@ module.exports = {
             });
         });
     },
-  
     //update feedback
     updateClientFeedback: function (req, res) {
-        var form = new multiparty.Form();
-        form.parse(req, function (err, fields, files) {
-            _.each(fields, function (val, key) {
-                req.body[key] = val[0];
-            });
-            req.files = files;
-            if (!_.isEmpty(files)) {
-                _.each(files.clientImage, function (profilePic) {
-                    var pictureName = helper.uplaodFile(profilePic, 'content/clientImages');
-                    req.body['clientImage'] = pictureName[0];
-                    req.body['clientImageRandom'] = pictureName[1];
-                }); 
-            }
-            models.clientsFeedBack.update(req.body, {where: {"clientId": req.params.id}}).then(function (feedback) {
-                return res.json({
-                    success: true,
-                    message: "Client feedback updated Successfully",
-                });
-            }).catch(Sequelize.ValidationError, function (err) {
-                return res.json({
-                    success: true,
-                    message: "something wrong.",
-                });
-            }).catch(function (err) {
-                return res.status(400).send({
-                    message: err.message
-                });
-            });
-        })
 
-    },
-    //delete individual feedback
-    deleteClientFeedback: function (req, res) {
-
-        models.clientsFeedBack.destroy({where: {"clientId": req.params.id}}).then(function (feedback) {
-            if (feedback == 1) {
-                return res.json({
-                    success: true,
-                    message: "feedback has been deleted",
+        models.clientsFeedBack.findById(req.params.id,{attributes: ["clientImageRandom"]}).then(function (clientData) {
+            var form = new multiparty.Form();
+            form.parse(req, function (err, fields, files) {
+                _.each(fields, function (val, key) {
+                    req.body[key] = val[0];
                 });
-            } else {
-                return res.json({
-                    success: false,
-                    message: "Something wrong in product",
+                req.files = files;
+                if (!_.isEmpty(files)) {
+                    _.each(files.clientImage, function (profilePic) {
+                        var pictureName = helper.uplaodFile(profilePic, 'content/clientImages');
+                        console.log(clientData.clientImageRandom)
+                        if(fs.existsSync(appDir+"/content/clientImages/"+clientData.clientImageRandom)){   
+                            fs.unlink(appDir+"/content/clientImages/"+clientData.clientImageRandom);  
+                        }
+                        req.body['clientImage'] = pictureName[0];
+                        req.body['clientImageRandom'] = pictureName[1];
+                    }); 
+                }
+                models.clientsFeedBack.update(req.body, {where: {"clientId": req.params.id}}).then(function (feedback) {
+                    return res.json({
+                        success: true,
+                        message: "Client feedback updated Successfully",
+                    });
+                }).catch(Sequelize.ValidationError, function (err) {
+                    return res.json({
+                        success: true,
+                        message: "something wrong.",
+                    });
+                }).catch(function (err) {
+                    return res.status(400).send({
+                        message: err.message
+                    });
                 });
-            }
-
+            })
         }).catch(Sequelize.ValidationError, function (err) {
             return res.status(422).send(err.errors);
         }).catch(function (err) {
             return res.status(400).send({
                 message: err.message
             });
+        }); 
+
+    },
+    //delete individual feedback
+    deleteClientFeedback: function (req, res) {
+
+        models.clientsFeedBack.findById(req.params.id,{attributes: ["clientImageRandom"]}).then(function (clientData) {
+            models.clientsFeedBack.destroy({where: {"clientId": req.params.id}}).then(function (feedback) {
+                if (feedback == 1) {
+                    if(fs.existsSync(appDir+"/content/clientImages/"+clientData.clientImageRandom)){   
+                        fs.unlink(appDir+"/content/clientImages/"+clientData.clientImageRandom);  
+                    }
+                    return res.json({
+                        success: true,
+                        message: "feedback has been deleted",
+                    });
+                } else {
+                    return res.json({
+                        success: false,
+                        message: "Something wrong in product",
+                    });
+                }
+
+            }).catch(Sequelize.ValidationError, function (err) {
+                return res.status(422).send(err.errors);
+            }).catch(function (err) {
+                return res.status(400).send({
+                    message: err.message
+                });
+            });
+        }).catch(Sequelize.ValidationError, function (err) {
+                return res.status(422).send(err.errors);
+        }).catch(function (err) {
+            return res.status(400).send({
+                message: err.message
+            });
         });
+        
     }
 };

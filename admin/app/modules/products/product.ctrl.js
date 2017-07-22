@@ -46,8 +46,8 @@ app.controller('productCtrl', ['$scope', '$rootScope','httpMethodService','apiUr
 
 app.controller('productInfoCtrl', ['$scope', '$rootScope','$routeParams','apiUrl','httpMethodService', function ($scope, $rootScope,$routeParams,apiUrl,httpMethodService) {
     $scope.product = {};
+    $scope.product.productImages = [];
     $scope.productGallary = [];
-    var formData = new FormData();
     var getProductInfoUrl = apiUrl.getApiUrl('product') + "/"+$routeParams.id;
 
     httpMethodService.httpFile("GET",getProductInfoUrl,{}).success(function(response){
@@ -57,17 +57,27 @@ app.controller('productInfoCtrl', ['$scope', '$rootScope','$routeParams','apiUrl
     });
 
     $scope.addProductGallery = function(){
-         formData.append('productId', $routeParams.id);
-        angular.forEach($scope.productGallary,function(value,key){
-            formData.append('image', value);
-        });
+        if($scope.productGallary.length > 0){
+            var formData = new FormData();
+            formData.append('productId', $routeParams.id);
+            angular.forEach($scope.productGallary,function(value,key){
+                formData.append('image', value);
+            });
 
-        httpMethodService.httpFile("POST",apiUrl.getApiUrl('addImagesOfProduct'),formData).success(function(response){
-            if(response.success){
-                // $scope.product.productImages
-                    // $location.path("/products");
-            }
-        });
+            httpMethodService.httpFile("POST",apiUrl.getApiUrl('addImagesOfProduct'),formData).success(function(response){
+                if(response.success){
+                    angular.forEach(response.newAddedImages,function(value,key){
+                        $scope.product.productImages.push(value);    
+                    })
+                    delete formData;
+                    $scope.productGallary = [];
+                    var formData = new FormData();
+                    // $scope.product.productImages
+                        // $location.path("/products");
+                }
+            });
+        }
+        
     }
 
     $scope.removeGalleryImage = function(pimag){   
@@ -86,7 +96,7 @@ app.controller('productInfoCtrl', ['$scope', '$rootScope','$routeParams','apiUrl
             angular.forEach(element.files, function (value, key) {
                 $scope.productGallary.push(value);
             }) 
-            console.log($scope.productGallary)
+            // console.log($scope.productGallary)
         });
     };
 }]);
@@ -98,8 +108,7 @@ app.controller('productCreateEditCtrl', ['$scope', '$rootScope','httpMethodServi
 
         httpMethodService.httpFile("GET",getProductInfoUrl,{}).success(function(response){
             if(response.success){
-                $scope.product = response.product;
-                console.log($scope.product.productImages)
+                $scope.product = response.product; 
             }
         });
     }

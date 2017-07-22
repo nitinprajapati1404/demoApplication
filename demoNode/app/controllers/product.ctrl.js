@@ -1,6 +1,7 @@
 var bcrypt = require("bcrypt-nodejs");
 var _ = require('lodash');
 var multiparty = require('multiparty');
+var fs = require('fs');
 var helper = require("../helpers/_helpers");
 var allAttributesOfProduct = [
     'productId',
@@ -15,6 +16,15 @@ var allAttributesOfProduct = [
     [models.sequelize.fn('CONCAT', process.env.CONTENT_URL_CATLOG, models.sequelize.col('productCatelogRandom')), 'productCatelogRandom'],
     "showOnHomePage"
 ];
+
+var path = require('path');
+// find the first module to be loaded
+var topModule = module;
+
+while(topModule.parent)
+  topModule = topModule.parent;
+
+var appDir = path.dirname(topModule.filename);
 
 module.exports = {
     // add product 
@@ -111,60 +121,117 @@ module.exports = {
     },
     //update product 
     updateProduct: function (req, res) {
-        var form = new multiparty.Form();
-        form.parse(req, function (err, fields, files) {
-            _.each(fields, function (val, key) {
-                req.body[key] = val[0];
+        models.product.findById(req.params.id, {attributes: ["productThumbImageRandom","productHomePageImageRandom","productCatelogRandom"],
+           
+        }).then(function (productdata) {
+            var form = new multiparty.Form();
+            form.parse(req, function (err, fields, files) {
+                _.each(fields, function (val, key) {
+                    req.body[key] = val[0];
+                });
+                req.files = files;
+                if (!_.isEmpty(files)) {
+                    _.each(files.productThumbImage, function (profilePic) {
+                        var pictureName = helper.uplaodFile(profilePic, 'content/product');
+                        if(fs.existsSync(appDir+"/content/product/"+productdata.productThumbImageRandom)){
+                             fs.unlink(appDir+"/content/product/"+productdata.productThumbImageRandom);
+                        }
+                        req.body['productThumbImage'] = pictureName[0];
+                        req.body['productThumbImageRandom'] = pictureName[1];
+                    });
+                    _.each(files.productHomePageImage, function (profilePic) {
+                        var imageName = helper.uplaodFile(profilePic, 'content/product');
+                        if(fs.existsSync(appDir+"/content/product/"+productdata.productHomePageImageRandom)){
+                             fs.unlink(appDir+"/content/product/"+productdata.productHomePageImageRandom);
+                        }
+                        req.body['productHomePageImage'] = imageName[0];
+                        req.body['productHomePageImageRandom'] = imageName[1];
+                    });
+                    _.each(files.productCatelog, function (profilePic) { 
+                        var catlogName = helper.uplaodFile(profilePic, 'content/catlog');
+                        if(fs.existsSync(appDir+"/content/catlog/"+productdata.productCatelogRandom)){
+                             fs.unlink(appDir+"/content/catlog/"+productdata.productCatelogRandom);
+                        }
+                        req.body['productCatelog'] = catlogName[0];
+                        req.body['productCatelogRandom'] = catlogName[1];
+                    });
+                }
+                models.product.update(req.body, {where: {"productId": req.params.id}}).then(function (product) {
+                    return res.json({
+                        success: true,
+                        message: "Product updated Successfully",
+                    });
+                }).catch(Sequelize.ValidationError, function (err) {
+                    return res.json({
+                        success: true,
+                        message: "something wrong.",
+                    });
+                }).catch(function (err) {
+                    return res.status(400).send({
+                        message: err.message
+                    });
+                });
+            })
+
+        }).catch(Sequelize.ValidationError, function (err) {
+            return res.status(422).send(err.errors);
+        }).catch(function (err) {
+            return res.status(400).send({
+                message: err.message
             });
-            req.files = files;
-            if (!_.isEmpty(files)) {
-                _.each(files.productThumbImage, function (profilePic) {
-                    var pictureName = helper.uplaodFile(profilePic, 'content/product');
-                    req.body['productThumbImage'] = pictureName[0];
-                    req.body['productThumbImageRandom'] = pictureName[1];
-                });
-                _.each(files.productHomePageImage, function (profilePic) {
-                    var imageName = helper.uplaodFile(profilePic, 'content/product');
-                    req.body['productHomePageImage'] = imageName[0];
-                    req.body['productHomePageImageRandom'] = imageName[1];
-                });
-                _.each(files.productCatelog, function (profilePic) {
-                    var catlogName = helper.uplaodFile(profilePic, 'content/catlog');
-                    req.body['productCatelog'] = catlogName[0];
-                    req.body['productCatelogRandom'] = catlogName[1];
-                });
-            }
-            models.product.update(req.body, {where: {"productId": req.params.id}}).then(function (product) {
-                return res.json({
-                    success: true,
-                    message: "Product updated Successfully",
-                });
-            }).catch(Sequelize.ValidationError, function (err) {
-                return res.json({
-                    success: true,
-                    message: "something wrong.",
-                });
-            }).catch(function (err) {
-                return res.status(400).send({
-                    message: err.message
-                });
-            });
-        })
+        }); 
 
     },
     //delete individual product
     deleteProduct: function (req, res) {
 
-        models.product.destroy({where: {"productId": req.params.id}}).then(function (product) {
-            if (product == 1) {
-                return res.json({
-                    success: true,
-                    message: "product has been deleted",
+        models.product.findById(req.params.id, {attributes: ["productThumbImageRandom","productHomePageImageRandom","productCatelogRandom"],
+            include: [{model: models.productImages, attributes: [
+                        "productImageId",
+                        "image",
+                        'imageRandom',
+                    ]}]
+        }).then(function (productdata) { 
+            if (productdata != null) {
+               models.product.destroy({where: {"productId": req.params.id}}).then(function (product) { 
+                if(fs.existsSync(appDir+"/content/product/"+productdata.productThumbImageRandom)){
+                    fs.unlink(appDir+"/content/product/"+productdata.productThumbImageRandom);   
+                } 
+                if(fs.existsSync(appDir+"/content/product/"+productdata.productHomePageImageRandom)){
+                    fs.unlink(appDir+"/content/product/"+productdata.productHomePageImageRandom);
+                }  
+                if(fs.existsSync(appDir+"/content/catlog/"+productdata.productCatelogRandom)){
+                    fs.unlink(appDir+"/content/catlog/"+productdata.productCatelogRandom);   
+                } 
+                 _.each(productdata.productImages,function(v){
+                    if(fs.existsSync(appDir+"/content/product/"+v.imageRandom)){
+                        fs.unlink(appDir+"/content/product/"+v.imageRandom);   
+                    }
+                     
+                 })
+                if (product == 1) {
+                    return res.json({
+                        success: true,
+                        message: "product has been deleted",
+                    });
+                } else {
+                    return res.json({
+                        success: false,
+                        message: "Something wrong in product",
+                    });
+                }
+
+            }).catch(Sequelize.ValidationError, function (err) {
+                return res.status(422).send(err.errors);
+            }).catch(function (err) {
+                return res.status(400).send({
+                    message: err.message
                 });
+            });
             } else {
                 return res.json({
                     success: false,
-                    message: "Something wrong in product",
+                    message: "No Product found",
                 });
             }
 
@@ -175,6 +242,8 @@ module.exports = {
                 message: err.message
             });
         });
+  
+        
     },
     // add multiple images to the product for the gallary
     addMultipleImagesToProduct: function (req, res) {
@@ -195,18 +264,27 @@ module.exports = {
                 });
             }
             if (totalDocLength > 0) {
+                var newAddedImages = [];
                 var count = 0;
                 _.each(allImages, function (image) {
 
                     req.body['image'] = image[0];
                     req.body['imageRandom'] = image[1];
                     models.productImages.create(req.body).then(function (product) {
+                        
+                        var tempObj = {
+                            productImageId:product.productImageId,
+                            image:product.image,
+                            imageRandom:process.env.CONTENT_URL_PRODUCT + product.imageRandom
+                        }
+                        newAddedImages.push(tempObj);
                         count++;
                         if ((count == totalDocLength) && !isError) {
 
                             return res.json({
                                 success: true,
                                 message: "Product images uploaded Successfully",
+                                newAddedImages:newAddedImages
                             })
                         }
                     }).catch(Sequelize.ValidationError, function (err) {
@@ -255,20 +333,32 @@ module.exports = {
         });
     },
     //delete individual of the image
-    removeIndividualProductImage: function (req, res) {
-        models.productImages.destroy({where: {"productImageId": req.params.id}}).then(function (product) {
-            if (product == 1) {
-                return res.json({
-                    success: true,
-                    message: "Image has been deleted",
-                });
-            } else {
-                return res.json({
-                    success: false,
-                    message: "Something wrong in image",
-                });
-            }
+    removeIndividualProductImage: function (req, res) {  
+        models.productImages.findById(req.params.id).then(function(result){
 
+            models.productImages.destroy({where: {"productImageId": req.params.id}}).then(function (product) {
+                if (product == 1) {
+                    if(fs.existsSync(appDir+"/content/product/"+result.imageRandom)){
+                         fs.unlink(appDir+"/content/product/"+result.imageRandom);
+                    } 
+                    return res.json({
+                        success: true,
+                        message: "Image has been deleted",
+                    });
+                } else {
+                    return res.json({
+                        success: false,
+                        message: "Something wrong in image",
+                    });
+                } 
+            }).catch(Sequelize.ValidationError, function (err) {
+                return res.status(422).send(err.errors);
+            }).catch(function (err) {
+                return res.status(400).send({
+                    message: err.message
+                });
+            }); 
+            
         }).catch(Sequelize.ValidationError, function (err) {
             return res.status(422).send(err.errors);
         }).catch(function (err) {
@@ -276,5 +366,7 @@ module.exports = {
                 message: err.message
             });
         });
+
+        
     }
 };
