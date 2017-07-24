@@ -23,6 +23,9 @@ app.controller('mainCtrl', ['$scope', '$rootScope', 'constant', '$location','use
             userService.removeAllLocalStorage();
             $location.path("/login");
         };
+
+        var d = new Date();
+        $scope.year = d.getFullYear();
         
         //Loder hide show function for common
         $rootScope.loaderShow = function () {
