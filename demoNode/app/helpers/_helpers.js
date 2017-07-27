@@ -72,6 +72,14 @@ module.exports = {
         var name = (profilePic.originalFilename).split('.')[0];
         var ext = path.extname(profilePic.originalFilename);
         imageName = (name + '_' + imageName + ext).replace(' ', '_'); 
+        // if (!fs.existsSync(profilePath)){
+        //     fs.mkdirSync(profilePath);
+        // }
+        
+        fs.mkdir(profilePath, '0777', function(err) {
+           
+        });
+
         var targetPath = profilePath + '/' + imageName;
 
         fs.readFile(tmpPath, function (err, data) {
