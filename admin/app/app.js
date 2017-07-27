@@ -1,8 +1,15 @@
 var app = angular.module("adminapp", ["ngRoute", "ngMessages", "ui.bootstrap", "ngConfirm", "angular-growl", "angular-underscore","mgo-angular-wizard",'angularMoment','angularTrix','colorpicker.module']);
-app.run(function ($rootScope, $route, $location, apiUrl) {
+app.run(function ($rootScope, $route, $location, apiUrl,userService) {
     $rootScope._ = _;
     apiUrl.setApiUrls();
     $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
+        var adminLoggedIn = userService.getDataFromLocalStorage("adminLoggedIn");
+        if(adminLoggedIn == "" || adminLoggedIn == null){
+            $location.path("/login");
+        }
+        if((current.originalPath === "/login") && adminLoggedIn){
+            $location.path("/products");
+        }
         // if(current.originalPath === "/login"){
         //     if (localStorage.getItem("x-access-token") !== null) {
         //         $location.path("/dashboard");
